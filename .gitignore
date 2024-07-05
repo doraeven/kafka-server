@@ -1,0 +1,10 @@
+# kafka
+/kafka_*.tgz
+/kafka_*.asc
+
+# rpmbuild
+/rpmbuild
+/BUILD
+/BUILDROOT
+/RPMS
+/SRPMS
