@@ -37,6 +37,7 @@ Source15:       %{name}-%{_kraft_name}.sysconfig
 Source16:       %{name}-%{_kraft_name}.logrotate.d
 Source17:       %{name}-%{_kraft_name}.tmpfiles.d
 Source18:       %{name}-%{_kraft_name}.sysusers.d
+Patch0:         %{name}-run-class.sh.patch
 
 Provides:       kafka
 Packager:       Dora Even <doraeven@163.com>
@@ -62,6 +63,7 @@ https://kafka.apache.org/documentation/#introduction
 
 %prep
 %setup -q -n %{name}_%{_scala_version}-%{version}
+%patch0 -p1
 
 
 %build
@@ -247,6 +249,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Jul 08 2024 Dora Even <doraeven@163.com> - 3.7.1-1
+- Add kafka-run-class.sh.patch for Linux ENV patch
+
 * Mon Jul 01 2024 Dora Even <doraeven@163.com> - 3.7.1-1
 - Build kafka package
 

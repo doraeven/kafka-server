@@ -1,0 +1,16 @@
+--- kafka_2.13-3.7.1/bin/kafka-run-class.sh	2024-06-19 05:27:36.000000000 +0800
++++ kafka_2.13-3.7.1-new/bin/kafka-run-class.sh	2024-07-08 02:56:50.918811372 +0800
+@@ -201,6 +201,13 @@
+ done
+ shopt -u nullglob
+ 
++# Patch for linux ENV
++if [ -d "/usr/lib64/kafka/" ] && [ -z "$CLASSPATH" ]; then
++  CLASSPATH=".:/usr/lib64/kafka/*"
++  LOG4J_DIR="/etc/kafka/tools-log4j.properties"
++  KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:${LOG4J_DIR}"
++fi
++
+ if [ -z "$CLASSPATH" ] ; then
+   echo "Classpath is empty. Please build the project first e.g. by running './gradlew jar -PscalaVersion=$SCALA_VERSION'"
+   exit 1
