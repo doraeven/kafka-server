@@ -22,18 +22,21 @@ Source0:        https://downloads.apache.org/%{name}/%{version}/%{name}_%{_scala
 Source1:        %{name}.service
 Source2:        %{name}.xml
 Source3:        %{name}.sysconfig
-Source4:        %{name}.logrotate
+Source4:        %{name}.logrotate.d
 Source5:        %{name}.tmpfiles.d
-Source6:        %{name}-%{_zookeeper_name}.service
-Source7:        %{name}-%{_zookeeper_name}.xml
-Source8:        %{name}-%{_zookeeper_name}.sysconfig
-Source9:        %{name}-%{_zookeeper_name}.logrotate
-Source10:       %{name}-%{_zookeeper_name}.tmpfiles.d
-Source11:       %{name}-%{_kraft_name}.service
-Source12:       %{name}-%{_kraft_name}.xml
-Source13:       %{name}-%{_kraft_name}.sysconfig
-Source14:       %{name}-%{_kraft_name}.logrotate
-Source15:       %{name}-%{_kraft_name}.tmpfiles.d
+Source6:        %{name}.sysusers.d
+Source7:        %{name}-%{_zookeeper_name}.service
+Source8:        %{name}-%{_zookeeper_name}.xml
+Source9:        %{name}-%{_zookeeper_name}.sysconfig
+Source10:       %{name}-%{_zookeeper_name}.logrotate.d
+Source11:       %{name}-%{_zookeeper_name}.tmpfiles.d
+Source12:       %{name}-%{_zookeeper_name}.sysusers.d
+Source13:       %{name}-%{_kraft_name}.service
+Source14:       %{name}-%{_kraft_name}.xml
+Source15:       %{name}-%{_kraft_name}.sysconfig
+Source16:       %{name}-%{_kraft_name}.logrotate.d
+Source17:       %{name}-%{_kraft_name}.tmpfiles.d
+Source18:       %{name}-%{_kraft_name}.sysusers.d
 
 Provides:       kafka
 Packager:       Dora Even <doraeven@163.com>
@@ -88,18 +91,23 @@ sed -i "s:^log.dirs=.*:log.dirs=%{_sharedstatedir}/%{_kraft_name}/:" %{buildroot
 # /etc/sysconfig/
 install -d -m 0755 %{buildroot}%{_sysconfdir}/sysconfig/
 install -p -m 0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/sysconfig/%{name}
-install -p -m 0644 %{SOURCE8} %{buildroot}%{_sysconfdir}/sysconfig/%{name}-%{_zookeeper_name}
-install -p -m 0644 %{SOURCE13} %{buildroot}%{_sysconfdir}/sysconfig/%{name}-%{_kraft_name}
+install -p -m 0644 %{SOURCE9} %{buildroot}%{_sysconfdir}/sysconfig/%{name}-%{_zookeeper_name}
+install -p -m 0644 %{SOURCE15} %{buildroot}%{_sysconfdir}/sysconfig/%{name}-%{_kraft_name}
 # /etc/logrotate.d/
 install -d -m 0755 %{buildroot}%{_sysconfdir}/logrotate.d/
 install -p -m 0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
-install -p -m 0644 %{SOURCE9} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}-%{_zookeeper_name}
-install -p -m 0644 %{SOURCE14} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}-%{_kraft_name}
+install -p -m 0644 %{SOURCE10} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}-%{_zookeeper_name}
+install -p -m 0644 %{SOURCE16} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}-%{_kraft_name}
 # /usr/lib/tmpfiles.d/
 install -d -m 0755 %{buildroot}%{_tmpfilesdir}/
 install -p -m 0644 %{SOURCE5} %{buildroot}%{_tmpfilesdir}/%{name}.conf
-install -p -m 0644 %{SOURCE10} %{buildroot}%{_tmpfilesdir}/%{name}-%{_zookeeper_name}.conf
-install -p -m 0644 %{SOURCE15} %{buildroot}%{_tmpfilesdir}/%{name}-%{_kraft_name}.conf
+install -p -m 0644 %{SOURCE11} %{buildroot}%{_tmpfilesdir}/%{name}-%{_zookeeper_name}.conf
+install -p -m 0644 %{SOURCE17} %{buildroot}%{_tmpfilesdir}/%{name}-%{_kraft_name}.conf
+# /usr/lib/sysusers.d/
+install -d -m 0755 %{buildroot}%{_sysusersdir}/
+install -p -m 0644 %{SOURCE6} %{buildroot}%{_sysusersdir}/%{name}.conf
+install -p -m 0644 %{SOURCE12} %{buildroot}%{_sysusersdir}/%{name}-%{_zookeeper_name}.conf
+install -p -m 0644 %{SOURCE18} %{buildroot}%{_sysusersdir}/%{name}-%{_kraft_name}.conf
 
 # libs
 # /usr/lib64/kafka-{version}/
@@ -138,15 +146,15 @@ install -d -m 0755 %{buildroot}%{_rundir}/%{_kraft_name}/
 # /usr/lib/systemd/system/
 install -d -m 0755 %{buildroot}%{_unitdir}/
 install -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
-install -p -m 0644 %{SOURCE6} %{buildroot}%{_unitdir}/%{name}-%{_zookeeper_name}.service
-install -p -m 0644 %{SOURCE11} %{buildroot}%{_unitdir}/%{name}-%{_kraft_name}.service
+install -p -m 0644 %{SOURCE7} %{buildroot}%{_unitdir}/%{name}-%{_zookeeper_name}.service
+install -p -m 0644 %{SOURCE13} %{buildroot}%{_unitdir}/%{name}-%{_kraft_name}.service
 
 # firewalld
 # /usr/lib/firewalld/services/
 install -d -m 0755 %{buildroot}%{_prefix}/lib/firewalld/services/
 install -p -m 0644 %{SOURCE2} %{buildroot}%{_prefix}/lib/firewalld/services/%{name}.xml
-install -p -m 0644 %{SOURCE7} %{buildroot}%{_prefix}/lib/firewalld/services/%{name}-%{_zookeeper_name}.xml
-install -p -m 0644 %{SOURCE12} %{buildroot}%{_prefix}/lib/firewalld/services/%{name}-%{_kraft_name}.xml
+install -p -m 0644 %{SOURCE8} %{buildroot}%{_prefix}/lib/firewalld/services/%{name}-%{_zookeeper_name}.xml
+install -p -m 0644 %{SOURCE14} %{buildroot}%{_prefix}/lib/firewalld/services/%{name}-%{_kraft_name}.xml
 
 
 %files
@@ -164,6 +172,9 @@ install -p -m 0644 %{SOURCE12} %{buildroot}%{_prefix}/lib/firewalld/services/%{n
 %config %{_tmpfilesdir}/%{name}.conf
 %config %{_tmpfilesdir}/%{name}-%{_zookeeper_name}.conf
 %config %{_tmpfilesdir}/%{name}-%{_kraft_name}.conf
+%config %{_sysusersdir}/%{name}.conf
+%config %{_sysusersdir}/%{name}-%{_zookeeper_name}.conf
+%config %{_sysusersdir}/%{name}-%{_kraft_name}.conf
 
 # libs
 %{_libdir}/%{name}_%{_scala_version}-%{version}/
