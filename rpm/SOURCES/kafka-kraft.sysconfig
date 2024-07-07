@@ -1,0 +1,43 @@
+# if with -daemon, need to set systemd
+# -[Service]
+# -Type=forking
+# - ......
+# KAFKA_SERVER_CONFIG=-daemon /etc/kafka/kraft/server.properties
+KAFKA_SERVER_CONFIG=/etc/kafka/kraft/server.properties
+
+# PID file
+PID_FILE=/run/kraft/kraft.pid
+
+# Classpath addition for release
+CLASSPATH=.:/usr/lib64/kafka/*
+
+# JMX settings
+# KAFKA_JMX_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false
+# JMX port to use
+# JMX_PORT=
+
+# Log directory to use
+LOG_DIR=/var/log/kraft
+# Log4j settings
+# KAFKA_LOG4J_OPTS=-Dkafka.logs.dir=${LOG_DIR} -Dlog4j.configuration=file:${LOG4J_DIR}
+KAFKA_LOG4J_OPTS=-Dlog4j.configuration=file:///etc/kafka/log4j.properties
+
+# Generic jvm settings you want to add
+# KAFKA_OPTS=
+
+# Set Debug options if enabled
+# KAFKA_DEBUG=
+
+# Which java to use
+# JAVA_HOME=$JAVA_HOME/bin/java
+
+# Memory options
+# KAFKA_HEAP_OPTS=-Xmx256M
+
+# JVM performance options
+# KAFKA_JVM_PERFORMANCE_OPTS=-server -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:+ExplicitGCInvokesConcurrent -XX:MaxInlineLevel=15 -Djava.awt.headless=true
+# KAFKA_JVM_PERFORMANCE_OPTS=-server -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:+DisableExplicitGC -Djava.awt.headless=true
+
+# GC options
+# -loggc if KAFKA_GC_LOG_OPTS empty, then GC_LOG_ENABLED=true, and use default GC options
+# KAFKA_GC_LOG_OPTS=-Xloggc:${LOG_DIR}/kafkaServer-gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M
