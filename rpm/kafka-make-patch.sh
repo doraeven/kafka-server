@@ -6,7 +6,7 @@ PACKAGE_NAME=kafka_$KAFKA_VERSION
 
 # tar and cp new
 echo "tar sources and cp new sources"
-cd /root/rpmbuild/SOURCES/
+cd ~/rpmbuild/SOURCES/
 rm -rf $PACKAGE_NAME/
 rm -rf $PACKAGE_NAME-new/
 tar -zxvf $PACKAGE_NAME.tgz

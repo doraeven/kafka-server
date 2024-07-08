@@ -18,7 +18,7 @@ rm /var/lib/kraft/ -rf
 
 # install new rpm
 echo "2. install new"
-rpm -ivh /root/rpmbuild/RPMS/x86_64/$PACKAGE_NAME.rpm
+rpm -ivh ~/rpmbuild/RPMS/x86_64/$PACKAGE_NAME.rpm
 
 # print config info
 echo "3. print config info"
