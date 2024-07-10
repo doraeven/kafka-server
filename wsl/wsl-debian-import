@@ -1,0 +1,24 @@
+# Windows Subsystem for Linux (WSL) | Debian
+# https://wiki.debian.org/InstallingDebianOn/Microsoft/Windows/SubsystemForLinux
+
+# open Windows PowerShell or open Windows CMD
+$ wsl --update
+$ wsl --install -d Debian
+
+# run wsl Debian
+$ wsl -d Debian
+$ exit
+
+# show wsl list
+$ wsl --list --online
+# shutdown
+$ wsl --shutdown -d Debian
+
+
+# uninstall wsl Debian
+$ wsl --unregister Debian
+
+
+# update system
+$ sudo apt update -y
+$ sudo apt upgrade -y

@@ -1,0 +1,40 @@
+# Windows Subsystem for Linux (WSL) | Ubuntu
+# https://ubuntu.com/desktop/wsl
+# https://canonical-ubuntu-wsl.readthedocs-hosted.com/en/latest/guides/install-ubuntu-wsl2/
+
+# open Windows PowerShell or open Windows CMD
+$ wsl --update
+$ wsl --install
+# same as
+$ wsl --install -d Ubuntu
+
+# run wsl ubuntu
+$ wsl -d Ubuntu
+$ exit
+
+# show wsl list
+$ wsl --list --online
+# shutdown
+$ wsl --shutdown -d Ubuntu
+
+
+# uninstall wsl ubuntu
+$ wsl --unregister Ubuntu
+
+
+# install distro version
+$ wsl --install -d Ubuntu-24.04
+$ wsl --install -d Ubuntu-22.04
+$ wsl --install -d Ubuntu-20.04
+$ wsl --install -d Ubuntu-18.04
+
+# uninstall distro version
+$ wsl --unregister Ubuntu-24.04
+$ wsl --unregister Ubuntu-22.04
+$ wsl --unregister Ubuntu-20.04
+$ wsl --unregister Ubuntu-18.04
+
+
+# update system
+$ sudo apt update -y
+$ sudo apt upgrade -y

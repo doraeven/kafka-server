@@ -1,9 +1,11 @@
-# download wsl rocky
+# Windows Subsystem for Linux (WSL) | Rocky
 # https://docs.rockylinux.org/es/guides/interoperability/import_rocky_to_wsl/
+
+# download wsl Rocky
 # https://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-Container-Base.latest.x86_64.tar.xz
 # https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-Container-Base.latest.x86_64.tar.xz
 
-# copy rocky image to user home dir
+# copy Rocky image to user home dir
 # C:\Users\<UserName>\
 # %UserProfile%
 
@@ -21,17 +23,25 @@ $ md %UserProfile%\.wsl
 $ wsl --import Rocky-8 .\.wsl\Rocky-8 .\Rocky-8-Container-Base.latest.x86_64.tar.xz
 $ wsl --import Rocky-9 .\.wsl\Rocky-9 .\Rocky-9-Container-Base.latest.x86_64.tar.xz
 
-# run wsl rocky
+# run wsl Rocky
 $ wsl -d Rocky-8
 $ exit
 $ wsl -d Rocky-9
 $ exit
 
+
 # show wsl list
 $ wsl --list
+# shutdown
+$ wsl --shutdown -d Rocky-8
+$ wsl --shutdown -d Rocky-9
 
 
-# uninstall wsl rocky
+# uninstall wsl Rocky
 $ wsl --unregister Rocky-8
 $ wsl --unregister Rocky-9
 $ del .wsl
+
+
+# update system
+$ yum update -y
