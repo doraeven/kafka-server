@@ -37,6 +37,7 @@ Source15:       %{name}-%{_kraft_name}.sysconfig
 Source16:       %{name}-%{_kraft_name}.logrotate.d
 Source17:       %{name}-%{_kraft_name}.tmpfiles.d
 Source18:       %{name}-%{_kraft_name}.sysusers.d
+Source19:       %{name}-%{_kraft_name}-prepare-log-dirs.sh
 Patch0:         %{name}-run-class.sh.patch
 
 Provides:       kafka
@@ -119,6 +120,11 @@ install -p -m 0644 %{_builddir}/%{name}_%{_scala_version}-%{version}/libs/* %{bu
 # /usr/lib64/kafka/ -> /usr/lib64/kafka-{version}/
 ln -s %{name}_%{_scala_version}-%{version}/ %{buildroot}%{_libdir}/%{name}
 
+# libexec
+# /usr/libexec/
+install -d -m 0755 %{buildroot}%{_libexecdir}/
+install -p -m 0755 %{SOURCE19} %{buildroot}%{_libexecdir}/%{name}-%{_kraft_name}-prepare-log-dirs
+
 # log
 # /var/log/kafka/
 install -d -m 0755 %{buildroot}%{_var}/log/%{name}/
@@ -183,15 +189,18 @@ install -p -m 0644 %{SOURCE14} %{buildroot}%{_prefix}/lib/firewalld/services/%{n
 # symlink
 %{_libdir}/%{name}
 
+# libexec
+%{_libexecdir}/%{name}-%{_kraft_name}-prepare-log-dirs
+
 # log
-%attr(0750,%{_kafka_user},%{_kafka_group}) %dir %{_var}/log/%{name}/
-%attr(0750,%{_zookeeper_user},%{_zookeeper_group}) %dir %{_var}/log/%{_zookeeper_name}/
-%attr(0750,%{_kafka_user},%{_kafka_group}) %dir %{_var}/log/%{_kraft_name}/
+%attr(0755,%{_kafka_user},%{_kafka_group}) %dir %{_var}/log/%{name}/
+%attr(0755,%{_zookeeper_user},%{_zookeeper_group}) %dir %{_var}/log/%{_zookeeper_name}/
+%attr(0755,%{_kafka_user},%{_kafka_group}) %dir %{_var}/log/%{_kraft_name}/
 
 # data
-%attr(0750,%{_kafka_user},%{_kafka_group}) %dir %{_sharedstatedir}/%{name}/
-%attr(0750,%{_zookeeper_user},%{_zookeeper_group}) %dir %{_sharedstatedir}/%{_zookeeper_name}/
-%attr(0750,%{_kafka_user},%{_kafka_group}) %dir %{_sharedstatedir}/%{_kraft_name}/
+%attr(0755,%{_kafka_user},%{_kafka_group}) %dir %{_sharedstatedir}/%{name}/
+%attr(0755,%{_zookeeper_user},%{_zookeeper_group}) %dir %{_sharedstatedir}/%{_zookeeper_name}/
+%attr(0755,%{_kafka_user},%{_kafka_group}) %dir %{_sharedstatedir}/%{_kraft_name}/
 
 # run
 %attr(0755,%{_kafka_user},%{_kafka_group}) %dir %{_rundir}/%{name}/
