@@ -1,0 +1,37 @@
+# download wsl rocky
+# https://docs.rockylinux.org/es/guides/interoperability/import_rocky_to_wsl/
+# https://dl.rockylinux.org/pub/rocky/8/images/x86_64/Rocky-8-Container-Base.latest.x86_64.tar.xz
+# https://dl.rockylinux.org/pub/rocky/9/images/x86_64/Rocky-9-Container-Base.latest.x86_64.tar.xz
+
+# copy rocky image to user home dir
+# C:\Users\<UserName>\
+# %UserProfile%
+
+# open Windows PowerShell, import image to WSL
+$ wsl --update
+$ cd ~
+$ md ~/.wsl
+$ wsl --import Rocky-8 ./.wsl/Rocky-8 ./Rocky-8-Container-Base.latest.x86_64.tar.xz
+$ wsl --import Rocky-9 ./.wsl/Rocky-9 ./Rocky-9-Container-Base.latest.x86_64.tar.xz
+
+# or open Windows CMD, import image to WSL
+$ wsl --update
+$ cd %UserProfile%
+$ md %UserProfile%\.wsl
+$ wsl --import Rocky-8 .\.wsl\Rocky-8 .\Rocky-8-Container-Base.latest.x86_64.tar.xz
+$ wsl --import Rocky-9 .\.wsl\Rocky-9 .\Rocky-9-Container-Base.latest.x86_64.tar.xz
+
+# run wsl rocky
+$ wsl -d Rocky-8
+$ exit
+$ wsl -d Rocky-9
+$ exit
+
+# show wsl list
+$ wsl --list
+
+
+# uninstall wsl rocky
+$ wsl --unregister Rocky-8
+$ wsl --unregister Rocky-9
+$ del .wsl
