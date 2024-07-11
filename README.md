@@ -2,7 +2,7 @@
 Build Apache Kafka server packages from official.
 
 ![Static Badge](https://img.shields.io/badge/build-passing-brightgreen)
-![Static Badge](https://img.shields.io/badge/tag-3.7.0-blue)
+![Static Badge](https://img.shields.io/badge/tag-3.7.1-blue)
 ![Static Badge](https://img.shields.io/badge/released-v20240630-blue)
 ![GitHub License](https://img.shields.io/github/license/doraeven/kafka-server)
 
