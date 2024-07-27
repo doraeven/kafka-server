@@ -122,14 +122,14 @@ if [ $ret -ne 0 ]; then
 else
     # Get User and Group
     SERVICE_NAME="kafka-kraft"
-    kafka_user=`systemctl show -p User "${SERVICE_NAME}" | sed 's/^User=//'`
-    if [ x"$kafka_user" = x ]; then
-        kafka_user=kafka
+    kraft_user=`systemctl show -p User "${SERVICE_NAME}" | sed 's/^User=//'`
+    if [ x"$kraft_user" = x ]; then
+        kraft_user=kraft
     fi
 
-    kafka_group=`systemctl show -p Group "${SERVICE_NAME}" | sed 's/^Group=//'`
-    if [ x"$kafka_group" = x ]; then
-        kafka_group=kafka
+    kraft_group=`systemctl show -p Group "${SERVICE_NAME}" | sed 's/^Group=//'`
+    if [ x"$kraft_group" = x ]; then
+        kraft_group=kraft
     fi
 
     # Forearch log directories list
@@ -137,7 +137,7 @@ else
     do
         data_dir=$var    
         echo "Chowning and Chmoding $data_dir"
-        chown "$kafka_user:$kafka_group" "$data_dir"
+        chown "$kraft_user:$kraft_group" "$data_dir"
         chmod 0755 "$data_dir"
     done
     echo "Initialization of kafka-kraft log directories successfully."

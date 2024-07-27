@@ -8,6 +8,8 @@
 %define _zookeeper_user %{_zookeeper_name}
 %define _zookeeper_group %{_zookeeper_name}
 %define _kraft_name kraft
+%define _kraft_user %{_kraft_name}
+%define _kraft_group %{_kraft_name}
 
 Name:           kafka
 Version:        3.7.1
@@ -195,17 +197,17 @@ install -p -m 0644 %{SOURCE14} %{buildroot}%{_prefix}/lib/firewalld/services/%{n
 # log
 %attr(0755,%{_kafka_user},%{_kafka_group}) %dir %{_var}/log/%{name}/
 %attr(0755,%{_zookeeper_user},%{_zookeeper_group}) %dir %{_var}/log/%{_zookeeper_name}/
-%attr(0755,%{_kafka_user},%{_kafka_group}) %dir %{_var}/log/%{_kraft_name}/
+%attr(0755,%{_kraft_user},%{_kraft_group}) %dir %{_var}/log/%{_kraft_name}/
 
 # data
 %attr(0755,%{_kafka_user},%{_kafka_group}) %dir %{_sharedstatedir}/%{name}/
 %attr(0755,%{_zookeeper_user},%{_zookeeper_group}) %dir %{_sharedstatedir}/%{_zookeeper_name}/
-%attr(0755,%{_kafka_user},%{_kafka_group}) %dir %{_sharedstatedir}/%{_kraft_name}/
+%attr(0755,%{_kraft_user},%{_kraft_group}) %dir %{_sharedstatedir}/%{_kraft_name}/
 
 # run
 %attr(0755,%{_kafka_user},%{_kafka_group}) %dir %{_rundir}/%{name}/
 %attr(0755,%{_zookeeper_user},%{_zookeeper_group}) %dir %{_rundir}/%{_zookeeper_name}/
-%attr(0755,%{_kafka_user},%{_kafka_group}) %dir %{_rundir}/%{_kraft_name}/
+%attr(0755,%{_kraft_user},%{_kraft_group}) %dir %{_rundir}/%{_kraft_name}/
 
 # systemd
 %{_unitdir}/%{name}.service
@@ -232,6 +234,8 @@ install -p -m 0644 %{SOURCE14} %{buildroot}%{_prefix}/lib/firewalld/services/%{n
 /usr/sbin/useradd -r -g %{_kafka_group} -d %{_sharedstatedir}/%{name}/ -s /sbin/nologin -c "Kafka Server" %{_kafka_user} >/dev/null 2>&1 || :
 /usr/sbin/groupadd -r %{_zookeeper_group} >/dev/null 2>&1 || :
 /usr/sbin/useradd -r -g %{_zookeeper_group} -d %{_sharedstatedir}/%{_zookeeper_name}/ -s /sbin/nologin -c "Zookeeper Server" %{_zookeeper_user} >/dev/null 2>&1 || :
+/usr/sbin/groupadd -r %{_kraft_group} >/dev/null 2>&1 || :
+/usr/sbin/useradd -r -g %{_kraft_group} -d %{_sharedstatedir}/%{_kraft_name}/ -s /sbin/nologin -c "Kafka KRaft Server" %{_kraft_user} >/dev/null 2>&1 || :
 
 
 %post
@@ -251,6 +255,7 @@ install -p -m 0644 %{SOURCE14} %{buildroot}%{_prefix}/lib/firewalld/services/%{n
 %systemd_postun_with_restart %{name}-%{_kraft_name}.service
 /usr/sbin/userdel %{_kafka_user}
 /usr/sbin/userdel %{_zookeeper_user}
+/usr/sbin/userdel %{_kraft_user}
 
 
 %clean
@@ -258,6 +263,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Jul 27 2024 Dora Even <doraeven@163.com> - 3.7.1-1
+- Add kraft User and Group for fixed sysusers.d conflict
+
 * Mon Jul 08 2024 Dora Even <doraeven@163.com> - 3.7.1-1
 - Add kafka-run-class.sh.patch for Linux ENV patch
 

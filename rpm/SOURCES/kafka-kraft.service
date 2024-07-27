@@ -4,8 +4,8 @@ After=syslog.target network.target
 
 [Service]
 Type=simple
-User=kafka
-Group=kafka
+User=kraft
+Group=kraft
 EnvironmentFile=/etc/sysconfig/kafka-kraft
 ExecStartPre=/usr/libexec/kafka-kraft-prepare-log-dirs $KAFKA_SERVER_CONFIG
 ExecStart=/usr/bin/kafka/kafka-server-start.sh $KAFKA_SERVER_CONFIG
@@ -14,8 +14,8 @@ ExecReload=/usr/bin/kill -HUP $MAINPID
 
 # -daemon mode
 # Type=forking
-# User=kafka
-# Group=kafka
+# User=kraft
+# Group=kraft
 # EnvironmentFile=/etc/sysconfig/kafka-kraft
 # ExecStartPre=/usr/libexec/kafka-kraft-prepare-log-dirs $KAFKA_SERVER_CONFIG
 # ExecStart=/usr/bin/kafka/kafka-server-start.sh $KAFKA_SERVER_CONFIG
