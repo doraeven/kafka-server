@@ -263,7 +263,7 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Mon Jul 27 2024 Dora Even <doraeven@163.com> - 3.7.1-1
+* Sat Jul 27 2024 Dora Even <doraeven@163.com> - 3.7.1-1
 - Add kraft User and Group for fixed sysusers.d conflict
 
 * Mon Jul 08 2024 Dora Even <doraeven@163.com> - 3.7.1-1
