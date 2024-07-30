@@ -7,16 +7,16 @@ Build Apache Kafka server packages from official.
 ![GitHub License](https://img.shields.io/github/license/doraeven/kafka-server)
 
 ## Introduction
-#### 3.7.1
+### 3.7.1
 - Released Jun 28, 2024
 - [Release Notes](https://downloads.apache.org/kafka/3.7.1/RELEASE_NOTES.html)
 
-#### RPM for EL9 and EL8.
+### RPM for EL9 and EL8.
 Support:
 - Enterprise Linux 9 (RHEL 9, Rocky Linux 9, AlmaLinux 9, CentOS 9 Stream)
 - Enterprise Linux 8 (RHEL 8, Rocky Linux 8, AlmaLinux 8)
 
-#### DEB for DEBIAN and UBUNTU.
+### DEB for Debian and Ubuntu.
 Support:
 - Debian 12 (Bookworm)
 - Debian 11 (Bullseye)
@@ -27,12 +27,13 @@ Support:
 
 ## Usage
 ### Install Kafka
-#### RPM
-1. Download the rpm package from releases
+#### install with RPM
+Download the rpm package from releases
 
 > [https://github.com/doraeven/kafka-server/releases](https://github.com/doraeven/kafka-server/releases)
 
-2. Install rpm
+Install rpm
+
 EL9
 ```shell
 rpm -ivh kafka-3.7.1-1.el9.x86_64.rpm
@@ -42,76 +43,89 @@ EL8
 rpm -ivh kafka-3.7.1-1.el8.x86_64.rpm
 ```
 
-#### DEB
+#### install with DEB
 It on the way...
 
-
 ### Run Kafka with Zookeeper
-1. Start kafka-zookeeper.service
+Start kafka-zookeeper.service
 ```shell
 systemctl start kafka-zookeeper.service
 ```
 
-2. Start kafka.service
+Start kafka.service
 ```shell
 systemctl start kafka.service
 ```
 
-3. View service status
+View service status
 ```shell
 systemctl status kafka-zookeeper.service
 systemctl status kafka.service
 ```
 
-4. Add auto start
+Add auto start
 ```shell
 systemctl enable kafka-zookeeper.service
 systemctl enable kafka.service
 ```
 
-5. Stop service
+Stop service
 ```shell
 systemctl stop kafka.service
 systemctl stop kafka-zookeeper.service
 ```
 
-6. Disable auto start
+Disable auto start
 ```shell
 systemctl disable kafka-zookeeper.service
 systemctl disable kafka.service
 ```
 
 ### Run Kafka with KRaft
-1. Stop kafka and kafka-zookeeper service first
+Stop kafka and kafka-zookeeper service first
 ```shell
 systemctl stop kafka.service
 systemctl stop kafka-zookeeper.service
 ```
 
-2. Start Kafka with KRaft
+Start Kafka with KRaft
 ```shell
 systemctl start kafka-kraft.service
 ```
+_Your need not to init KRaft data dirs, `/usr/libexec/kafka-kraft-prepare-log-dirs` will do it automatically._
 
-3. View service status
+View service status
 ```shell
 systemctl status kafka-kraft.service
 ```
 
-4. Add auto start
+Add auto start
 ```shell
 systemctl enable kafka-kraft.service
 ```
 
-5. Stop service
+Stop service
 ```shell
 systemctl stop kafka-kraft.service
 ```
 
-6. Disable auto start
+Disable auto start
 ```shell
 systemctl disable kafka-kraft.service
 ```
+
+## Special
+**Run Kafka with Zookeeper** conflict with **Run Kafka with KRaft**.
+
+data dirs is:
+- kafka - /var/lib/kafka
+- zookeeper - /var/lib/zookeeper
+- kraft - /var/lib/kraft
+
+log dir is:
+- kafka - /var/log/kafka
+- zookeeper - /var/log/zookeeper
+- kraft - /var/log/kraft
 
 ## License
 
