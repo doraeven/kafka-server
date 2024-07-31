@@ -3,7 +3,19 @@
 # def
 KAFKA_VERSION=3.7.1
 EPOCH=1
-PACKAGE_NAME=kafka-$KAFKA_VERSION-$EPOCH.el8.x86_64
+DIST=""
+distro_info=$(cat /etc/os-release)
+if echo "$distro_info" | grep -q 'el9'; then
+    DIST="el9"
+elif echo "$distro_info" | grep -q 'el8'; then
+    DIST="el8"
+elif echo "$distro_info" | grep -q 'el7'; then
+    DIST="el7"
+else
+    echo "unknow os"
+    exit 1;
+fi
+PACKAGE_NAME=kafka-$KAFKA_VERSION-$EPOCH.$DIST.x86_64
 
 # remove old rpm
 echo "rpm remove"
