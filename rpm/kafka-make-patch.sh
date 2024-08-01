@@ -3,10 +3,11 @@
 # def
 KAFKA_VERSION=2.13-3.7.1
 PACKAGE_NAME=kafka_$KAFKA_VERSION
+TOPDIR=~/rpmbuild
 
 # tar and cp new
 echo "tar sources and cp new sources"
-cd ~/rpmbuild/SOURCES/
+cd $TOPDIR/SOURCES/
 rm -rf $PACKAGE_NAME/
 rm -rf $PACKAGE_NAME-new/
 tar -zxvf $PACKAGE_NAME.tgz

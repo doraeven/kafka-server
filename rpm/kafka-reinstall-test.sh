@@ -16,6 +16,7 @@ else
     exit 1;
 fi
 PACKAGE_NAME=kafka-$KAFKA_VERSION-$EPOCH.$DIST.x86_64
+TOPDIR=~/rpmbuild
 
 # remove old rpm
 echo "rpm remove"
@@ -30,7 +31,7 @@ rm /var/lib/kraft/ -rf
 
 # install new rpm
 echo "install new"
-rpm -ivh ~/rpmbuild/RPMS/x86_64/$PACKAGE_NAME.rpm
+rpm -ivh $TOPDIR/RPMS/x86_64/$PACKAGE_NAME.rpm
 
 # print config info
 echo "3. print config info"
