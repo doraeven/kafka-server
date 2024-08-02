@@ -5,22 +5,22 @@ KAFKA_VERSION=3.7.1
 EPOCH=1
 DIST=""
 distro_info=$(cat /etc/os-release)
-if echo "$distro_info" | grep -q 'el9'; then
+if echo "${distro_info}" | grep -q 'el9'; then
     DIST="el9"
-elif echo "$distro_info" | grep -q 'el8'; then
+elif echo "${distro_info}" | grep -q 'el8'; then
     DIST="el8"
-elif echo "$distro_info" | grep -q 'el7'; then
+elif echo "${distro_info}" | grep -q 'el7'; then
     DIST="el7"
 else
     echo "unknow os"
     exit 1;
 fi
-PACKAGE_NAME=kafka-$KAFKA_VERSION-$EPOCH.$DIST.x86_64
+PACKAGE_NAME=kafka-${KAFKA_VERSION}-${EPOCH}.${DIST}.x86_64
 TOPDIR=~/rpmbuild
 
 # remove old rpm
 echo "rpm remove"
-rpm -e $PACKAGE_NAME
+rpm -e ${PACKAGE_NAME}
 echo "delete old log, old data"
 rm /var/log/kafka/ -rf
 rm /var/log/zookeeper/ -rf
@@ -31,7 +31,7 @@ rm /var/lib/kraft/ -rf
 
 # install new rpm
 echo "install new"
-rpm -ivh $TOPDIR/RPMS/x86_64/$PACKAGE_NAME.rpm
+rpm -ivh ${TOPDIR}/RPMS/x86_64/${PACKAGE_NAME}.rpm
 
 # print config info
 echo "3. print config info"

@@ -1,17 +1,18 @@
 #!/bin/bash
 
 # def
-KAFKA_VERSION=2.13-3.7.1
-PACKAGE_NAME=kafka_$KAFKA_VERSION
+KAFKA_VERSION=3.7.1
+SCALA_VERSION=2.13
+PACKAGE_NAME=kafka_${SCALA_VERSION}-${KAFKA_VERSION}
 TOPDIR=~/rpmbuild
 
 # tar and cp new
 echo "tar sources and cp new sources"
-cd $TOPDIR/SOURCES/
-rm -rf $PACKAGE_NAME/
-rm -rf $PACKAGE_NAME-new/
-tar -zxvf $PACKAGE_NAME.tgz
-cp -rf $PACKAGE_NAME/ $PACKAGE_NAME-new/
+cd ${TOPDIR}/SOURCES/
+rm -rf ${PACKAGE_NAME}/
+rm -rf ${PACKAGE_NAME}-new/
+tar -zxvf ${PACKAGE_NAME}.tgz
+cp -rf ${PACKAGE_NAME}/ ${PACKAGE_NAME}-new/
 
 # patch /bin/kafka-run-class.sh
 # ```
@@ -33,8 +34,8 @@ if [ -d "/usr/lib64/kafka/" ] \&\& [ -z "$CLASSPATH" ]; then\
   KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file\:${LOG4J_DIR}"\
 fi\
 '
-sed -i 's:^shopt -u nullglob:&'"$PATCH_CODE"':' $PACKAGE_NAME-new/bin/kafka-run-class.sh
+sed -i 's:^shopt -u nullglob:&'"${PATCH_CODE}"':' ${PACKAGE_NAME}-new/bin/kafka-run-class.sh
 
 # Generate patch file
 echo "generate kafka-run-class.sh.patch"
-diff -u $PACKAGE_NAME/bin/kafka-run-class.sh $PACKAGE_NAME-new/bin/kafka-run-class.sh > kafka-run-class.sh.patch
+diff -u ${PACKAGE_NAME}/bin/kafka-run-class.sh ${PACKAGE_NAME}-new/bin/kafka-run-class.sh > kafka-run-class.sh.patch

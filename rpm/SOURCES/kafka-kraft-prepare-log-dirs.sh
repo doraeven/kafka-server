@@ -64,15 +64,15 @@ if [ ! -f $KAFKA_SERVER_CONFIG ]; then
 fi
 
 # Read property "log.dirs=" from config file
-LOG_DIRS=$(grep "log.dirs" $KAFKA_SERVER_CONFIG | grep -v '#' | cut -d'=' -f2 | sed 's/\r//')
+LOG_DIRS=$(grep "log.dirs" ${KAFKA_SERVER_CONFIG} | grep -v '#' | cut -d'=' -f2 | sed 's/\r//')
 # Check LOG_DIRS
 if [ -z "$LOG_DIRS" ]; then
     echo "config file property \"log.dirs=\" is empty"
     exit 1
 fi
 
-echo "KAFKA_SERVER_CONFIG=$KAFKA_SERVER_CONFIG"
-echo "LOG_DIRS=$LOG_DIRS"
+echo "KAFKA_SERVER_CONFIG=${KAFKA_SERVER_CONFIG}"
+echo "LOG_DIRS=${LOG_DIRS}"
 
 # A comma separated "," list of directories under which to store log files
 # Make LOG_DIRS to array
@@ -84,15 +84,15 @@ for var in ${array[@]}
 do
     data_dir=$var
     # Check LOG_DIR should initialize
-    ls_result=$( ( ls -1A "$data_dir" 2>/dev/null || echo "fake-file" ) | grep -E "meta.properties|bootstrap.checkpoint" )
+    ls_result=$( ( ls -1A "${data_dir}" 2>/dev/null || echo "fake-file" ) | grep -E "meta.properties|bootstrap.checkpoint" )
     if test -z "$ls_result"; then
         let uninitialized_count++
         # kraft dir not exists
-        echo "kafka-kraft is uninitialized in $data_dir present." >&2
+        echo "kafka-kraft is uninitialized in ${data_dir} present." >&2
     else
         let initialized_count++
         # kraft dir exists, it seems data are initialized properly
-        echo "kafka-kraft is initialized in $data_dir already." >&2
+        echo "kafka-kraft is initialized in ${data_dir} already." >&2
     fi
 done
 
@@ -114,7 +114,7 @@ if [ -z "$KAFKA_CLUSTER_ID" ]; then
 fi
 
 # Format Log Directories
-/usr/bin/kafka/kafka-storage.sh format -t "$KAFKA_CLUSTER_ID" -c "$KAFKA_SERVER_CONFIG" >&2
+/usr/bin/kafka/kafka-storage.sh format -t "${KAFKA_CLUSTER_ID}" -c "${KAFKA_SERVER_CONFIG}" >&2
 ret=$?
 if [ $ret -ne 0 ]; then
     echo "Initialization of kafka-kraft log directories failed." >&2
@@ -136,9 +136,9 @@ else
     for var in ${array[@]}
     do
         data_dir=$var    
-        echo "Chowning and Chmoding $data_dir"
-        chown "$kraft_user:$kraft_group" "$data_dir"
-        chmod 0755 "$data_dir"
+        echo "Chowning and Chmoding ${data_dir}"
+        chown "${kraft_user}:${kraft_group}" "${data_dir}"
+        chmod 0755 "${data_dir}"
     done
     echo "Initialization of kafka-kraft log directories successfully."
 fi
