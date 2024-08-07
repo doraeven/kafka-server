@@ -1,0 +1,67 @@
+# dirs
+
+# bin
+# /usr/bin/kafka/
+usr/bin/kafka/
+
+# config
+# /etc/kafka/
+etc/kafka/
+# /etc/kafka/kraft/
+etc/kafka/kraft/
+# /etc/sysconfig/
+etc/sysconfig/
+# /etc/logrotate.d/
+etc/logrotate.d/
+# /usr/lib/tmpfiles.d/
+usr/lib/tmpfiles.d/
+# /usr/lib/sysusers.d/
+usr/lib/sysusers.d/
+
+# libs
+# /usr/lib64/kafka-{version}/
+usr/lib64/kafka_2.13-3.7.1/
+
+# libexec
+# /usr/libexec/
+usr/libexec/
+
+# log
+# /var/log/kafka/
+var/log/kafka/
+# /var/log/zookeeper/
+var/log/zookeeper/
+# /var/log/kraft/
+var/log/kraft/
+
+# data
+# /var/lib/kafka/
+var/lib/kafka/
+# /var/lib/zookeeper/
+var/lib/zookeeper/
+# /var/lib/kraft/
+var/lib/kraft/
+
+# run
+# /run/kafka/
+run/kafka/
+# /run/zookeeper/
+run/zookeeper/
+# /run/kraft/
+run/kraft/
+
+# systemd
+# /usr/lib/systemd/system/
+usr/lib/systemd/system/
+
+# firewalld
+# /usr/lib/firewalld/services/
+usr/lib/firewalld/services/
+
+# license
+# /usr/share/licenses/kafka/
+usr/share/licenses/kafka/
+
+# doc
+# /usr/share/doc/kafka/
+usr/share/doc/kafka/

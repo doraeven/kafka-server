@@ -1,0 +1,69 @@
+#!/usr/bin/dh-exec
+# install
+
+# bin
+# /usr/bin/kafka/
+bin/*.sh usr/bin/kafka/
+
+# config
+# /etc/kafka/
+config/*.properties etc/kafka/
+config/*.conf etc/kafka/
+# /etc/kafka/kraft/
+config/kraft/*.properties etc/kafka/kraft/
+# /etc/sysconfig/
+debian/SOURCES/kafka.sysconfig => etc/sysconfig/kafka
+debian/SOURCES/kafka-zookeeper.sysconfig => etc/sysconfig/kafka-zookeeper
+debian/SOURCES/kafka-kraft.sysconfig => etc/sysconfig/kafka-kraft
+# /etc/logrotate.d/
+debian/SOURCES/kafka.logrotate.d => etc/logrotate.d/kafka
+debian/SOURCES/kafka-zookeeper.logrotate.d => etc/logrotate.d/kafka-zookeeper
+debian/SOURCES/kafka-kraft.logrotate.d => etc/logrotate.d/kafka-kraft
+# /usr/lib/tmpfiles.d/
+debian/SOURCES/kafka.tmpfiles.d => usr/lib/tmpfiles.d/kafka.conf
+debian/SOURCES/kafka-zookeeper.tmpfiles.d => usr/lib/tmpfiles.d/kafka-zookeeper.conf
+debian/SOURCES/kafka-kraft.tmpfiles.d => usr/lib/tmpfiles.d/kafka-kraft.conf
+# /usr/lib/sysusers.d/
+debian/SOURCES/kafka.sysusers.d => usr/lib/sysusers.d/kafka.conf
+debian/SOURCES/kafka-zookeeper.sysusers.d => usr/lib/sysusers.d/kafka-zookeeper.conf
+debian/SOURCES/kafka-kraft.sysusers.d => usr/lib/sysusers.d/kafka-kraft.conf
+
+# libs
+# /usr/lib64/kafka-{version}/
+libs/* usr/lib64/kafka_2.13-3.7.1/
+
+# libexec
+# /usr/libexec/
+debian/SOURCES/kafka-kraft-prepare-log-dirs.sh => usr/libexec/kafka-kraft-prepare-log-dirs
+
+# log
+# /var/log/kafka/
+# /var/log/zookeeper/
+# /var/log/kraft/
+
+# data
+# /var/lib/kafka/
+# /var/lib/zookeeper/
+# /var/lib/kraft/
+
+# run
+# /run/kafka/
+# /run/zookeeper/
+# /run/kraft/
+
+# systemd
+# /usr/lib/systemd/system/
+debian/SOURCES/kafka.service => usr/lib/systemd/system/kafka.service
+debian/SOURCES/kafka-zookeeper.service => usr/lib/systemd/system/kafka-zookeeper.service
+debian/SOURCES/kafka-kraft.service => usr/lib/systemd/system/kafka-kraft.service
+
+# firewalld
+# /usr/lib/firewalld/services/
+debian/SOURCES/kafka.xml => usr/lib/firewalld/services/kafka.xml
+debian/SOURCES/kafka-zookeeper.xml => usr/lib/firewalld/services/kafka-zookeeper.xml
+debian/SOURCES/kafka-kraft.xml => usr/lib/firewalld/services/kafka-kraft.xml
+
+# license
+# /usr/share/licenses/kafka/
+LICENSE usr/share/licenses/kafka/
+licenses/ usr/share/licenses/kafka/

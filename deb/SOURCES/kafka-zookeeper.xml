@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>kafka-zookeeper</short>
+  <description>Kafka ZooKeeper Server.</description>
+  <!-- clientPort -->
+  <port protocol="tcp" port="2181"/>
+  <!-- admin.serverPort -->
+  <!-- <port protocol="tcp" port="8080"/> -->
+</service>

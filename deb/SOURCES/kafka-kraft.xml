@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>kafka-kraft</short>
+  <description>Kafka KRaft Server.</description>
+  <!-- PLAINTEXT -->
+  <port protocol="tcp" port="9092"/>
+  <!-- CONTROLLER -->
+  <port protocol="tcp" port="9093"/>
+</service>

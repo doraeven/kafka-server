@@ -1,0 +1,36 @@
+diff -ur kafka_2.13-3.7.1/config/kraft/server.properties kafka_2.13-3.7.1-new/config/kraft/server.properties
+--- kafka_2.13-3.7.1/config/kraft/server.properties	2024-06-19 05:27:36.000000000 +0800
++++ kafka_2.13-3.7.1-new/config/kraft/server.properties	2024-08-07 15:34:33.448605183 +0800
+@@ -75,7 +75,7 @@
+ ############################# Log Basics #############################
+ 
+ # A comma separated list of directories under which to store log files
+-log.dirs=/tmp/kraft-combined-logs
++log.dirs=/var/lib/kraft/
+ 
+ # The default number of log partitions per topic. More partitions allow greater
+ # parallelism for consumption, but this will also result in more files across
+diff -ur kafka_2.13-3.7.1/config/server.properties kafka_2.13-3.7.1-new/config/server.properties
+--- kafka_2.13-3.7.1/config/server.properties	2024-06-19 05:27:36.000000000 +0800
++++ kafka_2.13-3.7.1-new/config/server.properties	2024-08-07 15:34:33.438605181 +0800
+@@ -59,7 +59,7 @@
+ ############################# Log Basics #############################
+ 
+ # A comma separated list of directories under which to store log files
+-log.dirs=/tmp/kafka-logs
++log.dirs=/var/lib/kafka/
+ 
+ # The default number of log partitions per topic. More partitions allow greater
+ # parallelism for consumption, but this will also result in more files across
+diff -ur kafka_2.13-3.7.1/config/zookeeper.properties kafka_2.13-3.7.1-new/config/zookeeper.properties
+--- kafka_2.13-3.7.1/config/zookeeper.properties	2024-06-19 05:27:36.000000000 +0800
++++ kafka_2.13-3.7.1-new/config/zookeeper.properties	2024-08-07 15:34:33.438605181 +0800
+@@ -13,7 +13,7 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ # the directory where the snapshot is stored.
+-dataDir=/tmp/zookeeper
++dataDir=/var/lib/zookeeper/
+ # the port at which the clients will connect
+ clientPort=2181
+ # disable the per-ip limit on the number of connections since this is a non-production config
