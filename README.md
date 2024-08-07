@@ -44,7 +44,10 @@ rpm -ivh kafka-3.7.1-1.el8.x86_64.rpm
 ```
 
 #### install with DEB
-It on the way...
+Debian or Ubuntu
+```shell
+dpkg -i kafka_3.7.1-1_amd64.deb
+```
 
 ### Run Kafka with Zookeeper
 Start kafka-zookeeper.service
