@@ -35,6 +35,10 @@ Download the package from releases
 #### install with RPM
 RHEL, Rocky Linux, AlmaLinux, CentOS
 
+Install jdk
+```shell
+yum install java-21-openjdk
+```
 EL9
 ```shell
 rpm -ivh kafka-3.7.1-1.el9.x86_64.rpm
@@ -45,6 +49,10 @@ rpm -ivh kafka-3.7.1-1.el8.x86_64.rpm
 ```
 
 #### install with DEB
+Install jdk
+```shell
+apt install openjdk-21-jdk
+```
 Debian or Ubuntu
 ```shell
 dpkg -i kafka_3.7.1-1_amd64.deb
