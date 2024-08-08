@@ -1,5 +1,5 @@
 # kafka-server
-Build Apache Kafka server packages from official.
+Build apache kafka server packages from official.
 
 ![Static Badge](https://img.shields.io/badge/build-passing-brightgreen)
 ![Static Badge](https://img.shields.io/badge/tag-3.7.1-blue)
