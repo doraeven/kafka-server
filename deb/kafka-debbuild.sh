@@ -154,6 +154,7 @@ cp -rf ${_builddir}/${NAME}_${SCALA_VERSION}-${VERSION}/* ${BUILDROOT}/
 # DEBIAN/* -> BUILDROOT/kafka-{VERSION}/debian/
 mkdir -p ${BUILDROOT}/debian/
 cp -rfa ${_debiandir}/* ${BUILDROOT}/debian/
+chmod +x ${BUILDROOT}/debian/kafka.install
 
 # SOURCES/* -> BUILDROOT/kafka-{VERSION}/debian/SOURCES/
 mkdir -p ${BUILDROOT}/debian/SOURCES/
