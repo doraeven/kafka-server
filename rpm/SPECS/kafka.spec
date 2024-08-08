@@ -12,7 +12,7 @@
 %define _kraft_group %{_kraft_name}
 
 Name:           kafka
-Version:        3.7.1
+Version:        3.8.0
 Release:        1%{?dist}
 Summary:        Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.
 
@@ -263,14 +263,8 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Sat Jul 27 2024 Dora Even <doraeven@163.com> - 3.7.1-1
-- Add kraft User and Group for fixed sysusers.d conflict
-
-* Mon Jul 08 2024 Dora Even <doraeven@163.com> - 3.7.1-1
-- Add kafka-run-class.sh.patch for Linux ENV patch
-
-* Mon Jul 01 2024 Dora Even <doraeven@163.com> - 3.7.1-1
+* Mon Aug 09 2024 Dora Even <doraeven@163.com> - 3.8.0-1
 - Build kafka package
 
-* Sat Jun 29 2024 Dora Even <doraeven@163.com>
+* Sat Aug 09 2024 Dora Even <doraeven@163.com>
 - Create kafka package project

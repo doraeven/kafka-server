@@ -25,7 +25,7 @@ set -x
 
 # def
 NAME=kafka
-VERSION=3.7.1
+VERSION=3.8.0
 SCALA_VERSION=2.13
 EPOCH=1
 
@@ -199,14 +199,8 @@ rm -rf ${BUILDROOT}
 
 
 # changelog
-# * Sat Jul 27 2024 Dora Even <doraeven@163.com> - 3.7.1-1
-# - Add kraft User and Group for fixed sysusers.d conflict
-
-# * Mon Jul 08 2024 Dora Even <doraeven@163.com> - 3.7.1-1
-# - Add kafka-run-class.sh.patch for Linux ENV patch
-
-# * Mon Jul 01 2024 Dora Even <doraeven@163.com> - 3.7.1-1
+# * Mon Aug 09 2024 Dora Even <doraeven@163.com> - 3.8.0-1
 # - Build kafka package
 
-# * Sat Jun 29 2024 Dora Even <doraeven@163.com>
+# * Sat Aug 09 2024 Dora Even <doraeven@163.com>
 # - Create kafka package project

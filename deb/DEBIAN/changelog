@@ -1,5 +1,5 @@
-kafka (3.7.1-1) UNRELEASED; urgency=medium
+kafka (3.8.0-1) UNRELEASED; urgency=medium
 
   * Initial release
 
- -- Dora Even <doraeven@163.com>  Thu, 01 Aug 2024 11:59:37 +0800
+ -- Dora Even <doraeven@163.com>  Fri, 09 Aug 2024 01:12:29 +0800
