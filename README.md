@@ -26,13 +26,14 @@ Support:
 - Ubuntu 20.04 LTS (Focal Fossa)
 
 ## Usage
-### Install Kafka
-#### install with RPM
-Download the rpm package from releases
+### Download Kafka
+Download the package from releases
 
 > [https://github.com/doraeven/kafka-server/releases](https://github.com/doraeven/kafka-server/releases)
 
-Install rpm
+### Install Kafka
+#### install with RPM
+RHEL, Rocky Linux, AlmaLinux, CentOS
 
 EL9
 ```shell
@@ -115,6 +116,26 @@ systemctl stop kafka-kraft.service
 Disable auto start
 ```shell
 systemctl disable kafka-kraft.service
+```
+
+### Uninstall Kafka
+#### uninstall for RPM
+RHEL, Rocky Linux, AlmaLinux, CentOS
+
+EL9
+```shell
+rpm -e kafka-3.7.1-1.el9.x86_64
+```
+EL8
+```shell
+rpm -e kafka-3.7.1-1.el8.x86_64
+```
+
+#### uninstall for DEB
+Debian or Ubuntu
+```shell
+dpkg -r kafka
+dpkg --purge kafka
 ```
 
 ## Special
