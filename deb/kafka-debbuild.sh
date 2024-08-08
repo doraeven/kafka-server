@@ -194,7 +194,7 @@ debuild
 
 # clean
 echo "%clean debbuild"
-# rm -rf ${BUILDROOT}
+rm -rf ${BUILDROOT}
 
 
 # changelog
