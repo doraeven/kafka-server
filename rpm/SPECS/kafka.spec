@@ -12,7 +12,7 @@
 %define _kraft_group %{_kraft_name}
 
 Name:           kafka
-Version:        3.8.0
+Version:        3.8.1
 Release:        1%{?dist}
 Summary:        Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.
 
@@ -263,6 +263,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Nov 28 2024 Dora Even <doraeven@163.com> - 3.8.1-1
+- Upgrade kafka package
+
 * Mon Aug 09 2024 Dora Even <doraeven@163.com> - 3.8.0-1
 - Build kafka package
 
