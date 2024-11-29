@@ -1,6 +1,6 @@
 diff -ur kafka_2.13-3.9.0/config/kraft/server.properties kafka_2.13-3.9.0-new/config/kraft/server.properties
---- kafka_2.13-3.9.0/config/kraft/server.properties	2024-10-17 23:52:36.000000000 +0800
-+++ kafka_2.13-3.9.0-new/config/kraft/server.properties	2024-11-28 23:38:33.873310411 +0800
+--- kafka_2.13-3.9.0/config/kraft/server.properties	2024-10-26 11:30:30.000000000 +0800
++++ kafka_2.13-3.9.0-new/config/kraft/server.properties	2024-11-29 14:03:13.695050192 +0800
 @@ -75,7 +75,7 @@
  ############################# Log Basics #############################
  
@@ -11,8 +11,8 @@ diff -ur kafka_2.13-3.9.0/config/kraft/server.properties kafka_2.13-3.9.0-new/co
  # The default number of log partitions per topic. More partitions allow greater
  # parallelism for consumption, but this will also result in more files across
 diff -ur kafka_2.13-3.9.0/config/server.properties kafka_2.13-3.9.0-new/config/server.properties
---- kafka_2.13-3.9.0/config/server.properties	2024-10-17 23:52:36.000000000 +0800
-+++ kafka_2.13-3.9.0-new/config/server.properties	2024-11-28 23:38:33.863373291 +0800
+--- kafka_2.13-3.9.0/config/server.properties	2024-10-26 11:30:30.000000000 +0800
++++ kafka_2.13-3.9.0-new/config/server.properties	2024-11-29 14:03:13.695050192 +0800
 @@ -59,7 +59,7 @@
  ############################# Log Basics #############################
  
@@ -23,8 +23,8 @@ diff -ur kafka_2.13-3.9.0/config/server.properties kafka_2.13-3.9.0-new/config/s
  # The default number of log partitions per topic. More partitions allow greater
  # parallelism for consumption, but this will also result in more files across
 diff -ur kafka_2.13-3.9.0/config/zookeeper.properties kafka_2.13-3.9.0-new/config/zookeeper.properties
---- kafka_2.13-3.9.0/config/zookeeper.properties	2024-10-17 23:52:36.000000000 +0800
-+++ kafka_2.13-3.9.0-new/config/zookeeper.properties	2024-11-28 23:38:33.873310411 +0800
+--- kafka_2.13-3.9.0/config/zookeeper.properties	2024-10-26 11:30:30.000000000 +0800
++++ kafka_2.13-3.9.0-new/config/zookeeper.properties	2024-11-29 14:03:13.695050192 +0800
 @@ -13,7 +13,7 @@
  # See the License for the specific language governing permissions and
  # limitations under the License.
