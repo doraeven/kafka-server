@@ -1,5 +1,5 @@
---- kafka_2.13-3.8.1/bin/kafka-run-class.sh	2024-10-17 23:52:36.000000000 +0800
-+++ kafka_2.13-3.8.1-new/bin/kafka-run-class.sh	2024-11-28 23:38:33.853436171 +0800
+--- kafka_2.13-3.9.0/bin/kafka-run-class.sh	2024-10-17 23:52:36.000000000 +0800
++++ kafka_2.13-3.9.0-new/bin/kafka-run-class.sh	2024-11-28 23:38:33.853436171 +0800
 @@ -201,6 +201,14 @@
  done
  shopt -u nullglob
