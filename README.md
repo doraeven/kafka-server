@@ -2,14 +2,14 @@
 Build apache kafka server packages from official.
 
 ![Static Badge](https://img.shields.io/badge/build-passing-brightgreen)
-![Static Badge](https://img.shields.io/badge/tag-3.7.1-blue)
-![Static Badge](https://img.shields.io/badge/released-v20240730-blue)
+![Static Badge](https://img.shields.io/badge/tag-3.7.2-blue)
+![Static Badge](https://img.shields.io/badge/released-v20250101-blue)
 ![GitHub License](https://img.shields.io/github/license/doraeven/kafka-server)
 
 ## Introduction
-### 3.7.1
-- Released Jun 28, 2024
-- [Release Notes](https://downloads.apache.org/kafka/3.7.1/RELEASE_NOTES.html)
+### 3.7.2
+- Released Dec 13, 2024
+- [Release Notes](https://downloads.apache.org/kafka/3.7.2/RELEASE_NOTES.html)
 
 ### RPM for EL9 and EL8.
 Support:
@@ -41,11 +41,11 @@ yum install java-21-openjdk
 ```
 EL9
 ```shell
-rpm -ivh kafka-3.7.1-1.el9.x86_64.rpm
+rpm -ivh kafka-3.7.2-1.el9.x86_64.rpm
 ```
 EL8
 ```shell
-rpm -ivh kafka-3.7.1-1.el8.x86_64.rpm
+rpm -ivh kafka-3.7.2-1.el8.x86_64.rpm
 ```
 
 #### install with DEB
@@ -55,7 +55,7 @@ apt install openjdk-21-jdk
 ```
 Debian or Ubuntu
 ```shell
-dpkg -i kafka_3.7.1-1_amd64.deb
+dpkg -i kafka_3.7.2-1_amd64.deb
 ```
 
 ### Run Kafka with Zookeeper
@@ -132,11 +132,11 @@ RHEL, Rocky Linux, AlmaLinux, CentOS
 
 EL9
 ```shell
-rpm -e kafka-3.7.1-1.el9.x86_64
+rpm -e kafka-3.7.2-1.el9.x86_64
 ```
 EL8
 ```shell
-rpm -e kafka-3.7.1-1.el8.x86_64
+rpm -e kafka-3.7.2-1.el8.x86_64
 ```
 
 #### uninstall for DEB

@@ -1,6 +1,6 @@
-diff -ur kafka_2.13-3.7.1/config/kraft/server.properties kafka_2.13-3.7.1-new/config/kraft/server.properties
---- kafka_2.13-3.7.1/config/kraft/server.properties	2024-06-19 05:27:36.000000000 +0800
-+++ kafka_2.13-3.7.1-new/config/kraft/server.properties	2024-08-07 15:34:33.448605183 +0800
+diff -ur kafka_2.13-3.7.2/config/kraft/server.properties kafka_2.13-3.7.2-new/config/kraft/server.properties
+--- kafka_2.13-3.7.2/config/kraft/server.properties	2024-12-05 02:50:33.000000000 +0800
++++ kafka_2.13-3.7.2-new/config/kraft/server.properties	2025-01-01 20:08:14.145977324 +0800
 @@ -75,7 +75,7 @@
  ############################# Log Basics #############################
  
@@ -10,9 +10,9 @@ diff -ur kafka_2.13-3.7.1/config/kraft/server.properties kafka_2.13-3.7.1-new/co
  
  # The default number of log partitions per topic. More partitions allow greater
  # parallelism for consumption, but this will also result in more files across
-diff -ur kafka_2.13-3.7.1/config/server.properties kafka_2.13-3.7.1-new/config/server.properties
---- kafka_2.13-3.7.1/config/server.properties	2024-06-19 05:27:36.000000000 +0800
-+++ kafka_2.13-3.7.1-new/config/server.properties	2024-08-07 15:34:33.438605181 +0800
+diff -ur kafka_2.13-3.7.2/config/server.properties kafka_2.13-3.7.2-new/config/server.properties
+--- kafka_2.13-3.7.2/config/server.properties	2024-12-05 02:50:33.000000000 +0800
++++ kafka_2.13-3.7.2-new/config/server.properties	2025-01-01 20:08:14.145977324 +0800
 @@ -59,7 +59,7 @@
  ############################# Log Basics #############################
  
@@ -22,9 +22,9 @@ diff -ur kafka_2.13-3.7.1/config/server.properties kafka_2.13-3.7.1-new/config/s
  
  # The default number of log partitions per topic. More partitions allow greater
  # parallelism for consumption, but this will also result in more files across
-diff -ur kafka_2.13-3.7.1/config/zookeeper.properties kafka_2.13-3.7.1-new/config/zookeeper.properties
---- kafka_2.13-3.7.1/config/zookeeper.properties	2024-06-19 05:27:36.000000000 +0800
-+++ kafka_2.13-3.7.1-new/config/zookeeper.properties	2024-08-07 15:34:33.438605181 +0800
+diff -ur kafka_2.13-3.7.2/config/zookeeper.properties kafka_2.13-3.7.2-new/config/zookeeper.properties
+--- kafka_2.13-3.7.2/config/zookeeper.properties	2024-12-05 02:50:33.000000000 +0800
++++ kafka_2.13-3.7.2-new/config/zookeeper.properties	2025-01-01 20:08:14.145977324 +0800
 @@ -13,7 +13,7 @@
  # See the License for the specific language governing permissions and
  # limitations under the License.
