@@ -20,7 +20,7 @@ usr/lib/sysusers.d/
 
 # libs
 # /usr/lib64/kafka-{version}/
-usr/lib64/kafka_2.13-3.9.0/
+usr/lib64/kafka_2.13-3.9.1/
 
 # libexec
 # /usr/libexec/

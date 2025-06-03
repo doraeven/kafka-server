@@ -30,7 +30,7 @@ debian/SOURCES/kafka-kraft.sysusers.d => usr/lib/sysusers.d/kafka-kraft.conf
 
 # libs
 # /usr/lib64/kafka-{version}/
-libs/* usr/lib64/kafka_2.13-3.9.0/
+libs/* usr/lib64/kafka_2.13-3.9.1/
 
 # libexec
 # /usr/libexec/
