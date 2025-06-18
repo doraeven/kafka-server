@@ -25,19 +25,13 @@ set -x
 
 # def
 NAME=kafka
-VERSION=3.9.1
+VERSION=4.0.0
 SCALA_VERSION=2.13
 EPOCH=1
 
 # def kafka
 _kafka_user=${NAME}
 _kafka_group=${NAME}
-_zookeeper_name=zookeeper
-_zookeeper_user=${_zookeeper_name}
-_zookeeper_group=${_zookeeper_name}
-_kraft_name=kraft
-_kraft_user=${_kraft_name}
-_kraft_group=${_kraft_name}
 
 
 # macros for DEB build
@@ -86,19 +80,7 @@ SOURCE3=${NAME}.sysconfig
 SOURCE4=${NAME}.logrotate.d
 SOURCE5=${NAME}.tmpfiles.d
 SOURCE6=${NAME}.sysusers.d
-SOURCE7=${NAME}-${_zookeeper_name}.service
-SOURCE8=${NAME}-${_zookeeper_name}.xml
-SOURCE9=${NAME}-${_zookeeper_name}.sysconfig
-SOURCE10=${NAME}-${_zookeeper_name}.logrotate.d
-SOURCE11=${NAME}-${_zookeeper_name}.tmpfiles.d
-SOURCE12=${NAME}-${_zookeeper_name}.sysusers.d
-SOURCE13=${NAME}-${_kraft_name}.service
-SOURCE14=${NAME}-${_kraft_name}.xml
-SOURCE15=${NAME}-${_kraft_name}.sysconfig
-SOURCE16=${NAME}-${_kraft_name}.logrotate.d
-SOURCE17=${NAME}-${_kraft_name}.tmpfiles.d
-SOURCE18=${NAME}-${_kraft_name}.sysusers.d
-SOURCE19=${NAME}-${_kraft_name}-prepare-log-dirs.sh
+SOURCE19=${NAME}-prepare-log-dirs.sh
 PATCH0=${NAME}-run-class.sh.patch
 PATCH1=${NAME}-config-properties.patch
 
@@ -164,18 +146,6 @@ cp -rf ${_sourcedir}/${SOURCE3} ${BUILDROOT}/debian/SOURCES/
 cp -rf ${_sourcedir}/${SOURCE4} ${BUILDROOT}/debian/SOURCES/
 cp -rf ${_sourcedir}/${SOURCE5} ${BUILDROOT}/debian/SOURCES/
 cp -rf ${_sourcedir}/${SOURCE6} ${BUILDROOT}/debian/SOURCES/
-cp -rf ${_sourcedir}/${SOURCE7} ${BUILDROOT}/debian/SOURCES/
-cp -rf ${_sourcedir}/${SOURCE8} ${BUILDROOT}/debian/SOURCES/
-cp -rf ${_sourcedir}/${SOURCE9} ${BUILDROOT}/debian/SOURCES/
-cp -rf ${_sourcedir}/${SOURCE10} ${BUILDROOT}/debian/SOURCES/
-cp -rf ${_sourcedir}/${SOURCE11} ${BUILDROOT}/debian/SOURCES/
-cp -rf ${_sourcedir}/${SOURCE12} ${BUILDROOT}/debian/SOURCES/
-cp -rf ${_sourcedir}/${SOURCE13} ${BUILDROOT}/debian/SOURCES/
-cp -rf ${_sourcedir}/${SOURCE14} ${BUILDROOT}/debian/SOURCES/
-cp -rf ${_sourcedir}/${SOURCE15} ${BUILDROOT}/debian/SOURCES/
-cp -rf ${_sourcedir}/${SOURCE16} ${BUILDROOT}/debian/SOURCES/
-cp -rf ${_sourcedir}/${SOURCE17} ${BUILDROOT}/debian/SOURCES/
-cp -rf ${_sourcedir}/${SOURCE18} ${BUILDROOT}/debian/SOURCES/
 cp -rf ${_sourcedir}/${SOURCE19} ${BUILDROOT}/debian/SOURCES/
 
 # SOURCES/*.patch -> BUILDROOT/kafka-{VERSION}/debian/patches/
@@ -199,6 +169,9 @@ rm -rf ${BUILDROOT}
 
 
 # changelog
+# * Wed Jun 04 2025 Dora Even <doraeven@163.com> - 4.0.0-1
+# - Upgrade kafka package
+
 # * Sun Jun 01 2025 Dora Even <doraeven@163.com> - 3.9.1-1
 # - Upgrade kafka package
 

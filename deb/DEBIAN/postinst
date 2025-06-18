@@ -20,12 +20,6 @@ set -e
 _name=kafka
 _kafka_user=${_name}
 _kafka_group=${_name}
-_zookeeper_name=zookeeper
-_zookeeper_user=${_zookeeper_name}
-_zookeeper_group=${_zookeeper_name}
-_kraft_name=kraft
-_kraft_user=${_kraft_name}
-_kraft_group=${_kraft_name}
 
 case "$1" in
     configure)
@@ -36,7 +30,6 @@ case "$1" in
             else
                 _dh_action=start
             fi
-            deb-systemd-invoke $_dh_action 'kafka-zookeeper.service' >/dev/null || true
             deb-systemd-invoke $_dh_action 'kafka.service' >/dev/null || true
         fi
 
@@ -46,26 +39,14 @@ case "$1" in
         # log
         chown -Rh ${_kafka_user}:${_kafka_group} /var/log/kafka/
         chmod 0755 /var/log/kafka/
-        chown -Rh ${_zookeeper_user}:${_zookeeper_group} /var/log/zookeeper/
-        chmod 0755 /var/log/zookeeper/
-        chown -Rh ${_kraft_user}:${_kraft_group} /var/log/kraft/
-        chmod 0755 /var/log/kraft/
 
         # data
         chown -Rh ${_kafka_user}:${_kafka_group} /var/lib/kafka/
         chmod 0755 /var/lib/kafka/
-        chown -Rh ${_zookeeper_user}:${_zookeeper_group} /var/lib/zookeeper/
-        chmod 0755 /var/lib/zookeeper/
-        chown -Rh ${_kraft_user}:${_kraft_group} /var/lib/kraft/
-        chmod 0755 /var/lib/kraft/
 
         # run
         chown -Rh ${_kafka_user}:${_kafka_group} /run/kafka/
         chmod 0755 /run/kafka/
-        chown -Rh ${_zookeeper_user}:${_zookeeper_group} /run/zookeeper/
-        chmod 0755 /run/zookeeper/
-        chown -Rh ${_kraft_user}:${_kraft_group} /run/kraft/
-        chmod 0755 /run/kraft/
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
@@ -76,7 +57,6 @@ case "$1" in
             else
                 _dh_action=start
             fi
-            deb-systemd-invoke $_dh_action 'kafka-zookeeper.service' >/dev/null || true
             deb-systemd-invoke $_dh_action 'kafka.service' >/dev/null || true
         fi
     ;;

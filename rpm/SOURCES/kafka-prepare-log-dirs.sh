@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script creates the kafka-kraft data directory during first service start.
+# This script creates the kafka data directory during first service start.
 # In subsequent starts, it does nothing much.
 
 # `basename $0`
@@ -14,9 +14,9 @@
 #    -h, --help               Print help info.
 #
 # Examples:
-#    -- /usr/libexec/`basename $0` /etc/kafka/kraft/server.properties
-#    -- /usr/libexec/`basename $0` \$(/usr/bin/kafka/kafka-storage.sh random-uuid) /etc/kafka/kraft/server.properties
-#    -- /usr/libexec/`basename $0` "custom-uuid" /etc/kafka/kraft/server.properties
+#    -- /usr/libexec/`basename $0` /etc/kafka/server.properties
+#    -- /usr/libexec/`basename $0` \$(/usr/bin/kafka/kafka-storage.sh random-uuid) /etc/kafka/server.properties
+#    -- /usr/libexec/`basename $0` "custom-uuid" /etc/kafka/server.properties
 
 # Print help info
 if [ $# -eq 0 ] || [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
@@ -31,9 +31,9 @@ if [ $# -eq 0 ] || [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
     echo "   -h, --help               Print help info."
     echo
     echo "Examples:"
-    echo "   -- /usr/libexec/`basename $0` /etc/kafka/kraft/server.properties"
-    echo "   -- /usr/libexec/`basename $0` \$(/usr/bin/kafka/kafka-storage.sh random-uuid) /etc/kafka/kraft/server.properties"
-    echo "   -- /usr/libexec/`basename $0` "custom-uuid" /etc/kafka/kraft/server.properties"
+    echo "   -- /usr/libexec/`basename $0` /etc/kafka/server.properties"
+    echo "   -- /usr/libexec/`basename $0` \$(/usr/bin/kafka/kafka-storage.sh random-uuid) /etc/kafka/server.properties"
+    echo "   -- /usr/libexec/`basename $0` "custom-uuid" /etc/kafka/server.properties"
     exit 1
 fi
 
@@ -87,12 +87,12 @@ do
     ls_result=$( ( ls -1A "${data_dir}" 2>/dev/null || echo "fake-file" ) | grep -E "meta.properties|bootstrap.checkpoint" )
     if test -z "$ls_result"; then
         let uninitialized_count++
-        # kraft dir not exists
-        echo "kafka-kraft is uninitialized in ${data_dir} present." >&2
+        # kafka dir not exists
+        echo "kafka is uninitialized in ${data_dir} present." >&2
     else
         let initialized_count++
-        # kraft dir exists, it seems data are initialized properly
-        echo "kafka-kraft is initialized in ${data_dir} already." >&2
+        # kafka dir exists, it seems data are initialized properly
+        echo "kafka is initialized in ${data_dir} already." >&2
     fi
 done
 
@@ -106,7 +106,7 @@ if [ $initialized_count -gt 0 ]; then
 fi
 
 # Initializing
-echo "Initializing kafka-kraft log directories..."
+echo "Initializing kafka log directories..."
 
 # Random KAFKA_CLUSTER_ID
 if [ -z "$KAFKA_CLUSTER_ID" ]; then
@@ -114,22 +114,22 @@ if [ -z "$KAFKA_CLUSTER_ID" ]; then
 fi
 
 # Format Log Directories
-/usr/bin/kafka/kafka-storage.sh format -t "${KAFKA_CLUSTER_ID}" -c "${KAFKA_SERVER_CONFIG}" >&2
+/usr/bin/kafka/kafka-storage.sh format --standalone -t "${KAFKA_CLUSTER_ID}" -c "${KAFKA_SERVER_CONFIG}" >&2
 ret=$?
 if [ $ret -ne 0 ]; then
-    echo "Initialization of kafka-kraft log directories failed." >&2
+    echo "Initialization of kafka log directories failed." >&2
     exit $ret
 else
     # Get User and Group
-    SERVICE_NAME="kafka-kraft"
-    kraft_user=`systemctl show -p User "${SERVICE_NAME}" | sed 's/^User=//'`
-    if [ x"$kraft_user" = x ]; then
-        kraft_user=kraft
+    SERVICE_NAME="kafka"
+    kafka_user=`systemctl show -p User "${SERVICE_NAME}" | sed 's/^User=//'`
+    if [ x"$kafka_user" = x ]; then
+        kafka_user=kafka
     fi
 
-    kraft_group=`systemctl show -p Group "${SERVICE_NAME}" | sed 's/^Group=//'`
-    if [ x"$kraft_group" = x ]; then
-        kraft_group=kraft
+    kafka_group=`systemctl show -p Group "${SERVICE_NAME}" | sed 's/^Group=//'`
+    if [ x"$kafka_group" = x ]; then
+        kafka_group=kafka
     fi
 
     # Forearch log directories list
@@ -137,10 +137,10 @@ else
     do
         data_dir=$var    
         echo "Chowning and Chmoding ${data_dir}"
-        chown "${kraft_user}:${kraft_group}" "${data_dir}"
+        chown "${kafka_user}:${kafka_group}" "${data_dir}"
         chmod 0755 "${data_dir}"
     done
-    echo "Initialization of kafka-kraft log directories successfully."
+    echo "Initialization of kafka log directories successfully."
 fi
 
 exit 0

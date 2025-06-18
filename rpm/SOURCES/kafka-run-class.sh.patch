@@ -1,14 +1,14 @@
---- kafka_2.13-3.9.1/bin/kafka-run-class.sh	2025-05-12 12:02:52.000000000 +0800
-+++ kafka_2.13-3.9.1-new/bin/kafka-run-class.sh	2025-06-03 01:46:38.959146132 +0800
-@@ -201,6 +201,14 @@
+--- kafka_2.13-4.0.0/bin/kafka-run-class.sh	2025-03-14 16:19:26.000000000 +0800
++++ kafka_2.13-4.0.0-new/bin/kafka-run-class.sh	2025-06-18 19:13:42.805592362 +0800
+@@ -193,6 +193,14 @@
  done
  shopt -u nullglob
  
 +# Patch for linux ENV
 +if [ -d "/usr/lib64/kafka/" ] && [ -z "$CLASSPATH" ]; then
 +  CLASSPATH=".:/usr/lib64/kafka/*"
-+  LOG4J_DIR="/etc/kafka/tools-log4j.properties"
-+  KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:${LOG4J_DIR}"
++  LOG4J_DIR="/etc/kafka/tools-log4j2.yaml"
++  KAFKA_LOG4J_OPTS="-Dlog4j2.configurationFile=file:${LOG4J_DIR}"
 +fi
 +
 +

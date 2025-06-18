@@ -2,5 +2,8 @@
 <service>
   <short>kafka</short>
   <description>Apache Kafka Server.</description>
+  <!-- PLAINTEXT -->
   <port protocol="tcp" port="9092"/>
+  <!-- CONTROLLER -->
+  <port protocol="tcp" port="9093"/>
 </service>

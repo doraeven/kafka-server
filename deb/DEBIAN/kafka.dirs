@@ -7,8 +7,6 @@ usr/bin/kafka/
 # config
 # /etc/kafka/
 etc/kafka/
-# /etc/kafka/kraft/
-etc/kafka/kraft/
 # /etc/sysconfig/
 etc/sysconfig/
 # /etc/logrotate.d/
@@ -20,7 +18,7 @@ usr/lib/sysusers.d/
 
 # libs
 # /usr/lib64/kafka-{version}/
-usr/lib64/kafka_2.13-3.9.1/
+usr/lib64/kafka_2.13-4.0.0/
 
 # libexec
 # /usr/libexec/
@@ -29,26 +27,14 @@ usr/libexec/
 # log
 # /var/log/kafka/
 var/log/kafka/
-# /var/log/zookeeper/
-var/log/zookeeper/
-# /var/log/kraft/
-var/log/kraft/
 
 # data
 # /var/lib/kafka/
 var/lib/kafka/
-# /var/lib/zookeeper/
-var/lib/zookeeper/
-# /var/lib/kraft/
-var/lib/kraft/
 
 # run
 # /run/kafka/
 run/kafka/
-# /run/zookeeper/
-run/zookeeper/
-# /run/kraft/
-run/kraft/
 
 # systemd
 # /usr/lib/systemd/system/

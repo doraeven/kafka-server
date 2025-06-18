@@ -4,15 +4,9 @@
 %define _scala_version 2.13
 %define _kafka_user %{name}
 %define _kafka_group %{name}
-%define _zookeeper_name zookeeper
-%define _zookeeper_user %{_zookeeper_name}
-%define _zookeeper_group %{_zookeeper_name}
-%define _kraft_name kraft
-%define _kraft_user %{_kraft_name}
-%define _kraft_group %{_kraft_name}
 
 Name:           kafka
-Version:        3.9.1
+Version:        4.0.0
 Release:        1%{?dist}
 Summary:        Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.
 
@@ -27,20 +21,9 @@ Source3:        %{name}.sysconfig
 Source4:        %{name}.logrotate.d
 Source5:        %{name}.tmpfiles.d
 Source6:        %{name}.sysusers.d
-Source7:        %{name}-%{_zookeeper_name}.service
-Source8:        %{name}-%{_zookeeper_name}.xml
-Source9:        %{name}-%{_zookeeper_name}.sysconfig
-Source10:       %{name}-%{_zookeeper_name}.logrotate.d
-Source11:       %{name}-%{_zookeeper_name}.tmpfiles.d
-Source12:       %{name}-%{_zookeeper_name}.sysusers.d
-Source13:       %{name}-%{_kraft_name}.service
-Source14:       %{name}-%{_kraft_name}.xml
-Source15:       %{name}-%{_kraft_name}.sysconfig
-Source16:       %{name}-%{_kraft_name}.logrotate.d
-Source17:       %{name}-%{_kraft_name}.tmpfiles.d
-Source18:       %{name}-%{_kraft_name}.sysusers.d
-Source19:       %{name}-%{_kraft_name}-prepare-log-dirs.sh
+Source19:       %{name}-prepare-log-dirs.sh
 Patch0:         %{name}-run-class.sh.patch
+Patch1:         %{name}-config-properties.patch
 
 Provides:       kafka
 Packager:       Dora Even <doraeven@163.com>
@@ -67,6 +50,7 @@ https://kafka.apache.org/documentation/#introduction
 %prep
 %setup -q -n %{name}_%{_scala_version}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 
 %build
@@ -84,35 +68,19 @@ install -p -m 0755 %{_builddir}/%{name}_%{_scala_version}-%{version}/bin/*.sh %{
 install -d -m 0755 %{buildroot}%{_sysconfdir}/%{name}/
 install -p -m 0644 %{_builddir}/%{name}_%{_scala_version}-%{version}/config/*.properties %{buildroot}%{_sysconfdir}/%{name}/
 install -p -m 0644 %{_builddir}/%{name}_%{_scala_version}-%{version}/config/*.conf %{buildroot}%{_sysconfdir}/%{name}/
-# replace server.properties with datadir log.dirs=/tmp/kafka-logs -> log.dirs=/var/lib/kafka/
-sed -i "s:^log.dirs=.*:log.dirs=%{_sharedstatedir}/%{name}/:" %{buildroot}%{_sysconfdir}/%{name}/server.properties
-# replace zookeeper.properties with datadir dataDir=/tmp/zookeeper -> dataDir=/var/lib/zookeeper/
-sed -i "s:^dataDir=.*:dataDir=%{_sharedstatedir}/%{_zookeeper_name}/:" %{buildroot}%{_sysconfdir}/%{name}/zookeeper.properties
-# /etc/kafka/kraft/
-install -d -m 0755 %{buildroot}%{_sysconfdir}/%{name}/kraft/
-install -p -m 0644 %{_builddir}/%{name}_%{_scala_version}-%{version}/config/kraft/*.properties %{buildroot}%{_sysconfdir}/%{name}/kraft/
-# replace kraft/server.properties with datadir log.dirs=/tmp/kraft-combined-logs -> log.dirs=/var/lib/kraft/
-sed -i "s:^log.dirs=.*:log.dirs=%{_sharedstatedir}/%{_kraft_name}/:" %{buildroot}%{_sysconfdir}/%{name}/%{_kraft_name}/server.properties
+install -p -m 0644 %{_builddir}/%{name}_%{_scala_version}-%{version}/config/*.yaml %{buildroot}%{_sysconfdir}/%{name}/
 # /etc/sysconfig/
 install -d -m 0755 %{buildroot}%{_sysconfdir}/sysconfig/
 install -p -m 0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/sysconfig/%{name}
-install -p -m 0644 %{SOURCE9} %{buildroot}%{_sysconfdir}/sysconfig/%{name}-%{_zookeeper_name}
-install -p -m 0644 %{SOURCE15} %{buildroot}%{_sysconfdir}/sysconfig/%{name}-%{_kraft_name}
 # /etc/logrotate.d/
 install -d -m 0755 %{buildroot}%{_sysconfdir}/logrotate.d/
 install -p -m 0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
-install -p -m 0644 %{SOURCE10} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}-%{_zookeeper_name}
-install -p -m 0644 %{SOURCE16} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}-%{_kraft_name}
 # /usr/lib/tmpfiles.d/
 install -d -m 0755 %{buildroot}%{_tmpfilesdir}/
 install -p -m 0644 %{SOURCE5} %{buildroot}%{_tmpfilesdir}/%{name}.conf
-install -p -m 0644 %{SOURCE11} %{buildroot}%{_tmpfilesdir}/%{name}-%{_zookeeper_name}.conf
-install -p -m 0644 %{SOURCE17} %{buildroot}%{_tmpfilesdir}/%{name}-%{_kraft_name}.conf
 # /usr/lib/sysusers.d/
 install -d -m 0755 %{buildroot}%{_sysusersdir}/
 install -p -m 0644 %{SOURCE6} %{buildroot}%{_sysusersdir}/%{name}.conf
-install -p -m 0644 %{SOURCE12} %{buildroot}%{_sysusersdir}/%{name}-%{_zookeeper_name}.conf
-install -p -m 0644 %{SOURCE18} %{buildroot}%{_sysusersdir}/%{name}-%{_kraft_name}.conf
 
 # libs
 # /usr/lib64/kafka-{version}/
@@ -125,46 +93,30 @@ ln -s %{name}_%{_scala_version}-%{version}/ %{buildroot}%{_libdir}/%{name}
 # libexec
 # /usr/libexec/
 install -d -m 0755 %{buildroot}%{_libexecdir}/
-install -p -m 0755 %{SOURCE19} %{buildroot}%{_libexecdir}/%{name}-%{_kraft_name}-prepare-log-dirs
+install -p -m 0755 %{SOURCE19} %{buildroot}%{_libexecdir}/%{name}-prepare-log-dirs
 
 # log
 # /var/log/kafka/
 install -d -m 0755 %{buildroot}%{_var}/log/%{name}/
-# /var/log/zookeeper/
-install -d -m 0755 %{buildroot}%{_var}/log/%{_zookeeper_name}/
-# /var/log/kraft/
-install -d -m 0755 %{buildroot}%{_var}/log/%{_kraft_name}/
 
 # data
 # /var/lib/kafka/
 install -d -m 0755 %{buildroot}%{_sharedstatedir}/%{name}/
-# /var/lib/zookeeper/
-install -d -m 0755 %{buildroot}%{_sharedstatedir}/%{_zookeeper_name}/
-# /var/lib/kraft/
-install -d -m 0755 %{buildroot}%{_sharedstatedir}/%{_kraft_name}/
 
 # run
 # /run/kafka/
 install -d -m 0755 %{buildroot}%{_rundir}/%{name}/
-# /run/zookeeper/
-install -d -m 0755 %{buildroot}%{_rundir}/%{_zookeeper_name}/
-# /run/kraft/
-install -d -m 0755 %{buildroot}%{_rundir}/%{_kraft_name}/
 
 
 # systemd
 # /usr/lib/systemd/system/
 install -d -m 0755 %{buildroot}%{_unitdir}/
 install -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
-install -p -m 0644 %{SOURCE7} %{buildroot}%{_unitdir}/%{name}-%{_zookeeper_name}.service
-install -p -m 0644 %{SOURCE13} %{buildroot}%{_unitdir}/%{name}-%{_kraft_name}.service
 
 # firewalld
 # /usr/lib/firewalld/services/
 install -d -m 0755 %{buildroot}%{_prefix}/lib/firewalld/services/
 install -p -m 0644 %{SOURCE2} %{buildroot}%{_prefix}/lib/firewalld/services/%{name}.xml
-install -p -m 0644 %{SOURCE8} %{buildroot}%{_prefix}/lib/firewalld/services/%{name}-%{_zookeeper_name}.xml
-install -p -m 0644 %{SOURCE14} %{buildroot}%{_prefix}/lib/firewalld/services/%{name}-%{_kraft_name}.xml
 
 
 %files
@@ -174,17 +126,9 @@ install -p -m 0644 %{SOURCE14} %{buildroot}%{_prefix}/lib/firewalld/services/%{n
 # config
 %config(noreplace) %{_sysconfdir}/%{name}/
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
-%config(noreplace) %{_sysconfdir}/sysconfig/%{name}-%{_zookeeper_name}
-%config(noreplace) %{_sysconfdir}/sysconfig/%{name}-%{_kraft_name}
 %config(noreplace) %{_sysconfdir}/logrotate.d/%{name}
-%config(noreplace) %{_sysconfdir}/logrotate.d/%{name}-%{_zookeeper_name}
-%config(noreplace) %{_sysconfdir}/logrotate.d/%{name}-%{_kraft_name}
 %config %{_tmpfilesdir}/%{name}.conf
-%config %{_tmpfilesdir}/%{name}-%{_zookeeper_name}.conf
-%config %{_tmpfilesdir}/%{name}-%{_kraft_name}.conf
 %config %{_sysusersdir}/%{name}.conf
-%config %{_sysusersdir}/%{name}-%{_zookeeper_name}.conf
-%config %{_sysusersdir}/%{name}-%{_kraft_name}.conf
 
 # libs
 %{_libdir}/%{name}_%{_scala_version}-%{version}/
@@ -192,32 +136,22 @@ install -p -m 0644 %{SOURCE14} %{buildroot}%{_prefix}/lib/firewalld/services/%{n
 %{_libdir}/%{name}
 
 # libexec
-%{_libexecdir}/%{name}-%{_kraft_name}-prepare-log-dirs
+%{_libexecdir}/%{name}-prepare-log-dirs
 
 # log
 %attr(0755,%{_kafka_user},%{_kafka_group}) %dir %{_var}/log/%{name}/
-%attr(0755,%{_zookeeper_user},%{_zookeeper_group}) %dir %{_var}/log/%{_zookeeper_name}/
-%attr(0755,%{_kraft_user},%{_kraft_group}) %dir %{_var}/log/%{_kraft_name}/
 
 # data
 %attr(0755,%{_kafka_user},%{_kafka_group}) %dir %{_sharedstatedir}/%{name}/
-%attr(0755,%{_zookeeper_user},%{_zookeeper_group}) %dir %{_sharedstatedir}/%{_zookeeper_name}/
-%attr(0755,%{_kraft_user},%{_kraft_group}) %dir %{_sharedstatedir}/%{_kraft_name}/
 
 # run
 %attr(0755,%{_kafka_user},%{_kafka_group}) %dir %{_rundir}/%{name}/
-%attr(0755,%{_zookeeper_user},%{_zookeeper_group}) %dir %{_rundir}/%{_zookeeper_name}/
-%attr(0755,%{_kraft_user},%{_kraft_group}) %dir %{_rundir}/%{_kraft_name}/
 
 # systemd
 %{_unitdir}/%{name}.service
-%{_unitdir}/%{name}-%{_zookeeper_name}.service
-%{_unitdir}/%{name}-%{_kraft_name}.service
 
 # firewalld
 %{_prefix}/lib/firewalld/services/%{name}.xml
-%{_prefix}/lib/firewalld/services/%{name}-%{_zookeeper_name}.xml
-%{_prefix}/lib/firewalld/services/%{name}-%{_kraft_name}.xml
 
 
 %license LICENSE
@@ -232,30 +166,19 @@ install -p -m 0644 %{SOURCE14} %{buildroot}%{_prefix}/lib/firewalld/services/%{n
 %pre
 /usr/sbin/groupadd -r %{_kafka_group} >/dev/null 2>&1 || :
 /usr/sbin/useradd -r -g %{_kafka_group} -d %{_sharedstatedir}/%{name}/ -s /sbin/nologin -c "Kafka Server" %{_kafka_user} >/dev/null 2>&1 || :
-/usr/sbin/groupadd -r %{_zookeeper_group} >/dev/null 2>&1 || :
-/usr/sbin/useradd -r -g %{_zookeeper_group} -d %{_sharedstatedir}/%{_zookeeper_name}/ -s /sbin/nologin -c "Zookeeper Server" %{_zookeeper_user} >/dev/null 2>&1 || :
-/usr/sbin/groupadd -r %{_kraft_group} >/dev/null 2>&1 || :
-/usr/sbin/useradd -r -g %{_kraft_group} -d %{_sharedstatedir}/%{_kraft_name}/ -s /sbin/nologin -c "Kafka KRaft Server" %{_kraft_user} >/dev/null 2>&1 || :
 
 
 %post
-%systemd_post %{name}-%{_zookeeper_name}.service
 %systemd_post %{name}.service
 
 
 %preun
 %systemd_preun %{name}.service
-%systemd_preun %{name}-%{_zookeeper_name}.service
-%systemd_preun %{name}-%{_kraft_name}.service
 
 
 %postun
 %systemd_postun_with_restart %{name}.service
-%systemd_postun_with_restart %{name}-%{_zookeeper_name}.service
-%systemd_postun_with_restart %{name}-%{_kraft_name}.service
 /usr/sbin/userdel %{_kafka_user}
-/usr/sbin/userdel %{_zookeeper_user}
-/usr/sbin/userdel %{_kraft_user}
 
 
 %clean
@@ -263,6 +186,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Jun 04 2025 Dora Even <doraeven@163.com> - 4.0.0-1
+- Upgrade kafka package
+
 * Sun Jun 01 2025 Dora Even <doraeven@163.com> - 3.9.1-1
 - Upgrade kafka package
 
