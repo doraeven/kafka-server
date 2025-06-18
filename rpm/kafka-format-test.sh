@@ -16,5 +16,5 @@ echo "KAFKA_CLUSTER_ID is:" ${KAFKA_CLUSTER_ID}
 /usr/bin/kafka/kafka-storage.sh format --standalone -t ${KAFKA_CLUSTER_ID} -c ${KAFKA_SERVER_CONFIG}
 
 # Change Lib User and Group
-/bin/chown kafka:kafka /var/lib/kafka/bootstrap.checkpoint
-/bin/chown kafka:kafka /var/lib/kafka/meta.properties
+/bin/chown kafka:kafka /var/lib/kafka/kraft-combined-logs/bootstrap.checkpoint
+/bin/chown kafka:kafka /var/lib/kafka/kraft-combined-logs/meta.properties

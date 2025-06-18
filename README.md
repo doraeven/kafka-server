@@ -62,72 +62,31 @@ Debian or Ubuntu
 dpkg -i kafka_4.0.0-1_amd64.deb
 ```
 
-### Run Kafka with Zookeeper
-Start kafka-zookeeper.service
-```shell
-systemctl start kafka-zookeeper.service
-```
-
-Start kafka.service
+### Run Kafka (KRaft mode only)
+Start Kafka
 ```shell
 systemctl start kafka.service
 ```
+_Your need not to init Kafka data dirs, `/usr/libexec/kafka-prepare-log-dirs` will do it automatically._
 
 View service status
 ```shell
-systemctl status kafka-zookeeper.service
 systemctl status kafka.service
 ```
 
 Add auto start
 ```shell
-systemctl enable kafka-zookeeper.service
 systemctl enable kafka.service
 ```
 
 Stop service
 ```shell
 systemctl stop kafka.service
-systemctl stop kafka-zookeeper.service
 ```
 
 Disable auto start
 ```shell
-systemctl disable kafka-zookeeper.service
 systemctl disable kafka.service
-```
-
-### Run Kafka with KRaft
-Stop kafka and kafka-zookeeper service first
-```shell
-systemctl stop kafka.service
-systemctl stop kafka-zookeeper.service
-```
-
-Start Kafka with KRaft
-```shell
-systemctl start kafka-kraft.service
-```
-_Your need not to init KRaft data dirs, `/usr/libexec/kafka-kraft-prepare-log-dirs` will do it automatically._
-
-View service status
-```shell
-systemctl status kafka-kraft.service
-```
-
-Add auto start
-```shell
-systemctl enable kafka-kraft.service
-```
-
-Stop service
-```shell
-systemctl stop kafka-kraft.service
-```
-
-Disable auto start
-```shell
-systemctl disable kafka-kraft.service
 ```
 
 ### Uninstall Kafka
@@ -151,17 +110,13 @@ dpkg --purge kafka
 ```
 
 ## Special
-**Run Kafka with Zookeeper** conflict with **Run Kafka with KRaft**.
+**Since 4.0.0, Run Kafka with KRaft mode only**.
 
 data dirs is:
 - kafka - /var/lib/kafka
-- zookeeper - /var/lib/zookeeper
-- kraft - /var/lib/kraft
 
 log dir is:
 - kafka - /var/log/kafka
-- zookeeper - /var/log/zookeeper
-- kraft - /var/log/kraft
 
 ## License
 
