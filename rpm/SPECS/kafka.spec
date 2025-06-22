@@ -22,8 +22,8 @@ Source4:        %{name}.logrotate.d
 Source5:        %{name}.tmpfiles.d
 Source6:        %{name}.sysusers.d
 Source19:       %{name}-prepare-log-dirs.sh
-Patch0:         %{name}-run-class.sh.patch
-Patch1:         %{name}-config-properties.patch
+Patch0:         %{name}-bin.patch
+Patch1:         %{name}-config.patch
 
 Provides:       kafka
 Packager:       Dora Even <doraeven@163.com>

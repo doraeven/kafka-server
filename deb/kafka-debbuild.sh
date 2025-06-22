@@ -81,8 +81,8 @@ SOURCE4=${NAME}.logrotate.d
 SOURCE5=${NAME}.tmpfiles.d
 SOURCE6=${NAME}.sysusers.d
 SOURCE19=${NAME}-prepare-log-dirs.sh
-PATCH0=${NAME}-run-class.sh.patch
-PATCH1=${NAME}-config-properties.patch
+PATCH0=${NAME}-bin.patch
+PATCH1=${NAME}-config.patch
 
 # dirname
 dirname=$(cd `dirname $0`; pwd)
