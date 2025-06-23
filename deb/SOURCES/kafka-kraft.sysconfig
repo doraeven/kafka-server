@@ -18,9 +18,11 @@ CLASSPATH=.:/usr/lib64/kafka/*
 
 # Log directory to use
 LOG_DIR=/var/log/kraft
+
 # Log4j settings
-# KAFKA_LOG4J_OPTS=-Dkafka.logs.dir=${LOG_DIR} -Dlog4j.configuration=file:${LOG4J_DIR}
-KAFKA_LOG4J_OPTS=-Dlog4j.configuration=file:///etc/kafka/log4j.properties
+# LOG4J_DIR=/etc/kafka/log4j.properties
+# KAFKA_LOG4J_OPTS=-Dlog4j.configuration=file:${LOG4J_DIR}
+# KAFKA_LOG4J_CMD_OPTS=-Dkafka.logs.dir=$LOG_DIR $KAFKA_LOG4J_OPTS
 
 # Generic jvm settings you want to add
 # KAFKA_OPTS=

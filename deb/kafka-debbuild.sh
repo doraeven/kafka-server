@@ -99,8 +99,8 @@ SOURCE16=${NAME}-${_kraft_name}.logrotate.d
 SOURCE17=${NAME}-${_kraft_name}.tmpfiles.d
 SOURCE18=${NAME}-${_kraft_name}.sysusers.d
 SOURCE19=${NAME}-${_kraft_name}-prepare-log-dirs.sh
-PATCH0=${NAME}-run-class.sh.patch
-PATCH1=${NAME}-config-properties.patch
+PATCH0=${NAME}-bin.patch
+PATCH1=${NAME}-config.patch
 
 # dirname
 dirname=$(cd `dirname $0`; pwd)
