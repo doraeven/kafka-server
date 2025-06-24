@@ -1,0 +1,72 @@
+diff -ur kafka_2.13-3.8.1/config/connect-standalone.properties kafka_2.13-3.8.1-new/config/connect-standalone.properties
+--- kafka_2.13-3.8.1/config/connect-standalone.properties	2024-10-17 23:52:36.000000000 +0800
++++ kafka_2.13-3.8.1-new/config/connect-standalone.properties	2025-06-24 23:19:47.719108786 +0800
+@@ -25,7 +25,7 @@
+ key.converter.schemas.enable=true
+ value.converter.schemas.enable=true
+ 
+-offset.storage.file.filename=/tmp/connect.offsets
++offset.storage.file.filename=/var/lib/kafka/connect.offsets
+ # Flush much faster than normal, which is useful for testing/debugging
+ offset.flush.interval.ms=10000
+ 
+diff -ur kafka_2.13-3.8.1/config/kraft/broker.properties kafka_2.13-3.8.1-new/config/kraft/broker.properties
+--- kafka_2.13-3.8.1/config/kraft/broker.properties	2024-10-17 23:52:36.000000000 +0800
++++ kafka_2.13-3.8.1-new/config/kraft/broker.properties	2025-06-24 23:19:47.726827710 +0800
+@@ -72,7 +72,7 @@
+ ############################# Log Basics #############################
+ 
+ # A comma separated list of directories under which to store log files
+-log.dirs=/tmp/kraft-broker-logs
++log.dirs=/var/lib/kraft/kraft-broker-logs
+ 
+ # The default number of log partitions per topic. More partitions allow greater
+ # parallelism for consumption, but this will also result in more files across
+diff -ur kafka_2.13-3.8.1/config/kraft/controller.properties kafka_2.13-3.8.1-new/config/kraft/controller.properties
+--- kafka_2.13-3.8.1/config/kraft/controller.properties	2024-10-17 23:52:36.000000000 +0800
++++ kafka_2.13-3.8.1-new/config/kraft/controller.properties	2025-06-24 23:19:47.722968248 +0800
+@@ -65,7 +65,7 @@
+ ############################# Log Basics #############################
+ 
+ # A comma separated list of directories under which to store log files
+-log.dirs=/tmp/kraft-controller-logs
++log.dirs=/var/lib/kraft/kraft-controller-logs
+ 
+ # The default number of log partitions per topic. More partitions allow greater
+ # parallelism for consumption, but this will also result in more files across
+diff -ur kafka_2.13-3.8.1/config/kraft/server.properties kafka_2.13-3.8.1-new/config/kraft/server.properties
+--- kafka_2.13-3.8.1/config/kraft/server.properties	2024-10-17 23:52:36.000000000 +0800
++++ kafka_2.13-3.8.1-new/config/kraft/server.properties	2025-06-24 23:19:47.722968248 +0800
+@@ -75,7 +75,7 @@
+ ############################# Log Basics #############################
+ 
+ # A comma separated list of directories under which to store log files
+-log.dirs=/tmp/kraft-combined-logs
++log.dirs=/var/lib/kraft/kraft-combined-logs
+ 
+ # The default number of log partitions per topic. More partitions allow greater
+ # parallelism for consumption, but this will also result in more files across
+diff -ur kafka_2.13-3.8.1/config/server.properties kafka_2.13-3.8.1-new/config/server.properties
+--- kafka_2.13-3.8.1/config/server.properties	2024-10-17 23:52:36.000000000 +0800
++++ kafka_2.13-3.8.1-new/config/server.properties	2025-06-24 23:19:47.711389862 +0800
+@@ -59,7 +59,7 @@
+ ############################# Log Basics #############################
+ 
+ # A comma separated list of directories under which to store log files
+-log.dirs=/tmp/kafka-logs
++log.dirs=/var/lib/kafka/kafka-logs
+ 
+ # The default number of log partitions per topic. More partitions allow greater
+ # parallelism for consumption, but this will also result in more files across
+diff -ur kafka_2.13-3.8.1/config/zookeeper.properties kafka_2.13-3.8.1-new/config/zookeeper.properties
+--- kafka_2.13-3.8.1/config/zookeeper.properties	2024-10-17 23:52:36.000000000 +0800
++++ kafka_2.13-3.8.1-new/config/zookeeper.properties	2025-06-24 23:19:47.715249324 +0800
+@@ -13,7 +13,7 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ # the directory where the snapshot is stored.
+-dataDir=/tmp/zookeeper
++dataDir=/var/lib/zookeeper/
+ # the port at which the clients will connect
+ clientPort=2181
+ # disable the per-ip limit on the number of connections since this is a non-production config

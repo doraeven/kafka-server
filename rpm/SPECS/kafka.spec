@@ -40,7 +40,8 @@ Source16:       %{name}-%{_kraft_name}.logrotate.d
 Source17:       %{name}-%{_kraft_name}.tmpfiles.d
 Source18:       %{name}-%{_kraft_name}.sysusers.d
 Source19:       %{name}-%{_kraft_name}-prepare-log-dirs.sh
-Patch0:         %{name}-run-class.sh.patch
+Patch0:         %{name}-bin.patch
+Patch1:         %{name}-config.patch
 
 Provides:       kafka
 Packager:       Dora Even <doraeven@163.com>
@@ -67,6 +68,7 @@ https://kafka.apache.org/documentation/#introduction
 %prep
 %setup -q -n %{name}_%{_scala_version}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 
 %build
@@ -84,15 +86,9 @@ install -p -m 0755 %{_builddir}/%{name}_%{_scala_version}-%{version}/bin/*.sh %{
 install -d -m 0755 %{buildroot}%{_sysconfdir}/%{name}/
 install -p -m 0644 %{_builddir}/%{name}_%{_scala_version}-%{version}/config/*.properties %{buildroot}%{_sysconfdir}/%{name}/
 install -p -m 0644 %{_builddir}/%{name}_%{_scala_version}-%{version}/config/*.conf %{buildroot}%{_sysconfdir}/%{name}/
-# replace server.properties with datadir log.dirs=/tmp/kafka-logs -> log.dirs=/var/lib/kafka/
-sed -i "s:^log.dirs=.*:log.dirs=%{_sharedstatedir}/%{name}/:" %{buildroot}%{_sysconfdir}/%{name}/server.properties
-# replace zookeeper.properties with datadir dataDir=/tmp/zookeeper -> dataDir=/var/lib/zookeeper/
-sed -i "s:^dataDir=.*:dataDir=%{_sharedstatedir}/%{_zookeeper_name}/:" %{buildroot}%{_sysconfdir}/%{name}/zookeeper.properties
 # /etc/kafka/kraft/
 install -d -m 0755 %{buildroot}%{_sysconfdir}/%{name}/kraft/
 install -p -m 0644 %{_builddir}/%{name}_%{_scala_version}-%{version}/config/kraft/*.properties %{buildroot}%{_sysconfdir}/%{name}/kraft/
-# replace kraft/server.properties with datadir log.dirs=/tmp/kraft-combined-logs -> log.dirs=/var/lib/kraft/
-sed -i "s:^log.dirs=.*:log.dirs=%{_sharedstatedir}/%{_kraft_name}/:" %{buildroot}%{_sysconfdir}/%{name}/%{_kraft_name}/server.properties
 # /etc/sysconfig/
 install -d -m 0755 %{buildroot}%{_sysconfdir}/sysconfig/
 install -p -m 0644 %{SOURCE3} %{buildroot}%{_sysconfdir}/sysconfig/%{name}

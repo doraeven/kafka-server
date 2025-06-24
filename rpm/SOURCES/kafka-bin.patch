@@ -1,0 +1,85 @@
+diff -ur kafka_2.13-3.8.1/bin/connect-distributed.sh kafka_2.13-3.8.1-new/bin/connect-distributed.sh
+--- kafka_2.13-3.8.1/bin/connect-distributed.sh	2024-10-17 23:52:36.000000000 +0800
++++ kafka_2.13-3.8.1-new/bin/connect-distributed.sh	2025-06-24 23:33:03.394745868 +0800
+@@ -23,7 +23,7 @@
+ base_dir=$(dirname $0)
+ 
+ if [ "x$KAFKA_LOG4J_OPTS" = "x" ]; then
+-    export KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:$base_dir/../config/connect-log4j.properties"
++    export KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:/etc/kafka/connect-log4j.properties"
+ fi
+ 
+ if [ "x$KAFKA_HEAP_OPTS" = "x" ]; then
+diff -ur kafka_2.13-3.8.1/bin/connect-mirror-maker.sh kafka_2.13-3.8.1-new/bin/connect-mirror-maker.sh
+--- kafka_2.13-3.8.1/bin/connect-mirror-maker.sh	2024-10-17 23:52:36.000000000 +0800
++++ kafka_2.13-3.8.1-new/bin/connect-mirror-maker.sh	2025-06-24 23:33:03.402520364 +0800
+@@ -23,7 +23,7 @@
+ base_dir=$(dirname $0)
+ 
+ if [ "x$KAFKA_LOG4J_OPTS" = "x" ]; then
+-    export KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:$base_dir/../config/connect-log4j.properties"
++    export KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:/etc/kafka/connect-log4j.properties"
+ fi
+ 
+ if [ "x$KAFKA_HEAP_OPTS" = "x" ]; then
+diff -ur kafka_2.13-3.8.1/bin/connect-standalone.sh kafka_2.13-3.8.1-new/bin/connect-standalone.sh
+--- kafka_2.13-3.8.1/bin/connect-standalone.sh	2024-10-17 23:52:36.000000000 +0800
++++ kafka_2.13-3.8.1-new/bin/connect-standalone.sh	2025-06-24 23:33:03.406407612 +0800
+@@ -23,7 +23,7 @@
+ base_dir=$(dirname $0)
+ 
+ if [ "x$KAFKA_LOG4J_OPTS" = "x" ]; then
+-    export KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:$base_dir/../config/connect-log4j.properties"
++    export KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:/etc/kafka/connect-log4j.properties"
+ fi
+ 
+ if [ "x$KAFKA_HEAP_OPTS" = "x" ]; then
+diff -ur kafka_2.13-3.8.1/bin/kafka-run-class.sh kafka_2.13-3.8.1-new/bin/kafka-run-class.sh
+--- kafka_2.13-3.8.1/bin/kafka-run-class.sh	2024-10-17 23:52:36.000000000 +0800
++++ kafka_2.13-3.8.1-new/bin/kafka-run-class.sh	2025-06-24 23:33:03.421956604 +0800
+@@ -201,6 +201,12 @@
+ done
+ shopt -u nullglob
+ 
++# Patch for linux ENV
++if [ -d "/usr/lib64/kafka/" ] && [ -z "$CLASSPATH" ]; then
++  CLASSPATH=".:/usr/lib64/kafka/*"
++fi
++
++
+ if [ -z "$CLASSPATH" ] ; then
+   echo "Classpath is empty. Please build the project first e.g. by running './gradlew jar -PscalaVersion=$SCALA_VERSION'"
+   exit 1
+@@ -228,7 +234,7 @@
+ # Log4j settings
+ if [ -z "$KAFKA_LOG4J_OPTS" ]; then
+   # Log to console. This is a tool.
+-  LOG4J_DIR="$base_dir/config/tools-log4j.properties"
++  LOG4J_DIR="/etc/kafka/tools-log4j.properties"
+   # If Cygwin is detected, LOG4J_DIR is converted to Windows format.
+   (( WINDOWS_OS_FORMAT )) && LOG4J_DIR=$(cygpath --path --mixed "${LOG4J_DIR}")
+   KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:${LOG4J_DIR}"
+diff -ur kafka_2.13-3.8.1/bin/kafka-server-start.sh kafka_2.13-3.8.1-new/bin/kafka-server-start.sh
+--- kafka_2.13-3.8.1/bin/kafka-server-start.sh	2024-10-17 23:52:36.000000000 +0800
++++ kafka_2.13-3.8.1-new/bin/kafka-server-start.sh	2025-06-24 23:33:03.425843852 +0800
+@@ -22,7 +22,7 @@
+ base_dir=$(dirname $0)
+ 
+ if [ "x$KAFKA_LOG4J_OPTS" = "x" ]; then
+-    export KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:$base_dir/../config/log4j.properties"
++    export KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:/etc/kafka/log4j.properties"
+ fi
+ 
+ if [ "x$KAFKA_HEAP_OPTS" = "x" ]; then
+diff -ur kafka_2.13-3.8.1/bin/zookeeper-server-start.sh kafka_2.13-3.8.1-new/bin/zookeeper-server-start.sh
+--- kafka_2.13-3.8.1/bin/zookeeper-server-start.sh	2024-10-17 23:52:36.000000000 +0800
++++ kafka_2.13-3.8.1-new/bin/zookeeper-server-start.sh	2025-06-24 23:33:03.433618347 +0800
+@@ -22,7 +22,7 @@
+ base_dir=$(dirname $0)
+ 
+ if [ "x$KAFKA_LOG4J_OPTS" = "x" ]; then
+-    export KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:$base_dir/../config/log4j.properties"
++    export KAFKA_LOG4J_OPTS="-Dlog4j.configuration=file:/etc/kafka/log4j.properties"
+ fi
+ 
+ if [ "x$KAFKA_HEAP_OPTS" = "x" ]; then
