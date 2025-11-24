@@ -2,29 +2,33 @@
 Build apache kafka server packages from official.
 
 ![Static Badge](https://img.shields.io/badge/build-passing-brightgreen)
-![Static Badge](https://img.shields.io/badge/tag-4.0.0-blue)
-![Static Badge](https://img.shields.io/badge/released-v20250610-blue)
+![Static Badge](https://img.shields.io/badge/tag-4.0.1-blue)
+![Static Badge](https://img.shields.io/badge/released-v20251118-blue)
 ![GitHub License](https://img.shields.io/github/license/doraeven/kafka-server)
 
 ## Introduction
-### 4.0.0
-- Released March 18, 2025
-- [Release Notes](https://downloads.apache.org/kafka/4.0.0/RELEASE_NOTES.html)
+### 4.0.1
+- Released October 13, 2025
+- [Release Notes](https://downloads.apache.org/kafka/4.0.1/RELEASE_NOTES.html)
 
-### Upgrading to 4.0.0
+### Upgrading to 4.0.1
 Note: Apache Kafka 4.0 only supports KRaft mode - ZooKeeper mode has been removed. 
-Link: [Upgrading Servers to 4.0.0 from any version 3.3.x through 3.9.x](https://kafka.apache.org/documentation.html#upgrade_4_0_0)
+Link: [Upgrading Servers to 4.0.1 from any version 3.3.x through 3.9.x](https://kafka.apache.org/documentation.html#upgrade_4_0_1)
 
-### RPM for EL9 and EL8.
+### Future New Features
+Support: Cross compiling for ARM64 or AArch64.
+
+### RPM for EL10 and EL9 and EL8.
 Support:
+- Enterprise Linux 10 (RHEL 10, Rocky Linux 10, AlmaLinux 10, CentOS 10 Stream)
 - Enterprise Linux 9 (RHEL 9, Rocky Linux 9, AlmaLinux 9, CentOS 9 Stream)
 - Enterprise Linux 8 (RHEL 8, Rocky Linux 8, AlmaLinux 8)
 
 ### DEB for Debian and Ubuntu.
 Support:
+- Debian 13 (Trixie)
 - Debian 12 (Bookworm)
 - Debian 11 (Bullseye)
-- Debian 10 (Buster)
 - Ubuntu 24.04 LTS (Noble Numbat)
 - Ubuntu 22.04 LTS (Jammy Jellyfish)
 - Ubuntu 20.04 LTS (Focal Fossa)
@@ -43,13 +47,17 @@ Install jdk
 ```shell
 yum install java-21-openjdk
 ```
+EL10
+```shell
+rpm -ivh kafka-4.0.1-1.el10.x86_64.rpm
+```
 EL9
 ```shell
-rpm -ivh kafka-4.0.0-1.el9.x86_64.rpm
+rpm -ivh kafka-4.0.1-1.el9.x86_64.rpm
 ```
 EL8
 ```shell
-rpm -ivh kafka-4.0.0-1.el8.x86_64.rpm
+rpm -ivh kafka-4.0.1-1.el8.x86_64.rpm
 ```
 
 #### install with DEB
@@ -59,7 +67,7 @@ apt install openjdk-21-jdk
 ```
 Debian or Ubuntu
 ```shell
-dpkg -i kafka_4.0.0-1_amd64.deb
+dpkg -i kafka_4.0.1-1_amd64.deb
 ```
 
 ### Run Kafka (KRaft mode only)
@@ -93,13 +101,17 @@ systemctl disable kafka.service
 #### uninstall for RPM
 RHEL, Rocky Linux, AlmaLinux, CentOS
 
+EL10
+```shell
+rpm -e kafka-4.0.1-1.el10.x86_64
+```
 EL9
 ```shell
-rpm -e kafka-4.0.0-1.el9.x86_64
+rpm -e kafka-4.0.1-1.el9.x86_64
 ```
 EL8
 ```shell
-rpm -e kafka-4.0.0-1.el8.x86_64
+rpm -e kafka-4.0.1-1.el8.x86_64
 ```
 
 #### uninstall for DEB
@@ -110,7 +122,7 @@ dpkg --purge kafka
 ```
 
 ## Special
-**Since 4.0.0, Run Kafka with KRaft mode only**.
+**Since 4.0, Run Kafka with KRaft mode only**.
 
 data dirs is:
 - kafka - /var/lib/kafka

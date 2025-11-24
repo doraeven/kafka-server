@@ -1,6 +1,6 @@
-diff -ur kafka_2.13-4.0.0/config/broker.properties kafka_2.13-4.0.0-new/config/broker.properties
---- kafka_2.13-4.0.0/config/broker.properties	2025-03-14 16:19:26.000000000 +0800
-+++ kafka_2.13-4.0.0-new/config/broker.properties	2025-06-23 00:05:43.154534066 +0800
+diff -ur kafka_2.13-4.0.1/config/broker.properties kafka_2.13-4.0.1-new/config/broker.properties
+--- kafka_2.13-4.0.1/config/broker.properties	2025-09-09 22:13:05.000000000 +0800
++++ kafka_2.13-4.0.1-new/config/broker.properties	2025-11-24 23:25:41.738074512 +0800
 @@ -67,7 +67,7 @@
  ############################# Log Basics #############################
  
@@ -10,9 +10,9 @@ diff -ur kafka_2.13-4.0.0/config/broker.properties kafka_2.13-4.0.0-new/config/b
  
  # The default number of log partitions per topic. More partitions allow greater
  # parallelism for consumption, but this will also result in more files across
-diff -ur kafka_2.13-4.0.0/config/connect-standalone.properties kafka_2.13-4.0.0-new/config/connect-standalone.properties
---- kafka_2.13-4.0.0/config/connect-standalone.properties	2025-03-14 16:19:26.000000000 +0800
-+++ kafka_2.13-4.0.0-new/config/connect-standalone.properties	2025-06-23 00:05:43.158534066 +0800
+diff -ur kafka_2.13-4.0.1/config/connect-standalone.properties kafka_2.13-4.0.1-new/config/connect-standalone.properties
+--- kafka_2.13-4.0.1/config/connect-standalone.properties	2025-09-09 22:13:05.000000000 +0800
++++ kafka_2.13-4.0.1-new/config/connect-standalone.properties	2025-11-24 23:25:41.742074515 +0800
 @@ -25,7 +25,7 @@
  key.converter.schemas.enable=true
  value.converter.schemas.enable=true
@@ -22,9 +22,9 @@ diff -ur kafka_2.13-4.0.0/config/connect-standalone.properties kafka_2.13-4.0.0-
  # Flush much faster than normal, which is useful for testing/debugging
  offset.flush.interval.ms=10000
  
-diff -ur kafka_2.13-4.0.0/config/controller.properties kafka_2.13-4.0.0-new/config/controller.properties
---- kafka_2.13-4.0.0/config/controller.properties	2025-03-14 16:19:26.000000000 +0800
-+++ kafka_2.13-4.0.0-new/config/controller.properties	2025-06-23 00:05:43.146534067 +0800
+diff -ur kafka_2.13-4.0.1/config/controller.properties kafka_2.13-4.0.1-new/config/controller.properties
+--- kafka_2.13-4.0.1/config/controller.properties	2025-09-09 22:13:05.000000000 +0800
++++ kafka_2.13-4.0.1-new/config/controller.properties	2025-11-24 23:25:41.734074510 +0800
 @@ -67,7 +67,7 @@
  ############################# Log Basics #############################
  
@@ -34,9 +34,9 @@ diff -ur kafka_2.13-4.0.0/config/controller.properties kafka_2.13-4.0.0-new/conf
  
  # The default number of log partitions per topic. More partitions allow greater
  # parallelism for consumption, but this will also result in more files across
-diff -ur kafka_2.13-4.0.0/config/server.properties kafka_2.13-4.0.0-new/config/server.properties
---- kafka_2.13-4.0.0/config/server.properties	2025-03-14 16:19:26.000000000 +0800
-+++ kafka_2.13-4.0.0-new/config/server.properties	2025-06-23 00:05:43.142534068 +0800
+diff -ur kafka_2.13-4.0.1/config/server.properties kafka_2.13-4.0.1-new/config/server.properties
+--- kafka_2.13-4.0.1/config/server.properties	2025-09-09 22:13:05.000000000 +0800
++++ kafka_2.13-4.0.1-new/config/server.properties	2025-11-24 23:25:41.730074507 +0800
 @@ -70,7 +70,7 @@
  ############################# Log Basics #############################
  

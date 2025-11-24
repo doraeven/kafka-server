@@ -14,6 +14,9 @@ set -x
 # sudo apt install build-essential -y
 # sudo apt install equivs -y
 
+# prepare openjdk
+# sudo apt install openjdk-21-jdk -y
+
 
 # prepare from source by dh_make
 # dh_make --single --copyright apache --email <your email> --file kafka-{version}.tar.gz
@@ -25,7 +28,7 @@ set -x
 
 # def
 NAME=kafka
-VERSION=4.0.0
+VERSION=4.0.1
 SCALA_VERSION=2.13
 EPOCH=1
 
@@ -169,6 +172,9 @@ rm -rf ${BUILDROOT}
 
 
 # changelog
+# * Tue Nov 18 2025 Dora Even <doraeven@163.com> - 4.0.1-1
+# - Upgrade kafka package
+
 # * Wed Jun 04 2025 Dora Even <doraeven@163.com> - 4.0.0-1
 # - Upgrade kafka package
 
@@ -181,8 +187,8 @@ rm -rf ${BUILDROOT}
 # * Thu Nov 28 2024 Dora Even <doraeven@163.com> - 3.8.1-1
 # - Upgrade kafka package
 
-# * Mon Aug 09 2024 Dora Even <doraeven@163.com> - 3.8.0-1
+# * Fri Aug 09 2024 Dora Even <doraeven@163.com> - 3.8.0-1
 # - Build kafka package
 
-# * Sat Aug 09 2024 Dora Even <doraeven@163.com>
+# * Fri Aug 09 2024 Dora Even <doraeven@163.com>
 # - Create kafka package project
