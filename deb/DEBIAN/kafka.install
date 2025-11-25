@@ -21,7 +21,7 @@ debian/SOURCES/kafka.sysusers.d => usr/lib/sysusers.d/kafka.conf
 
 # libs
 # /usr/lib64/kafka-{version}/
-libs/* usr/lib64/kafka_2.13-4.0.1/
+libs/* usr/lib64/kafka_2.13-4.1.1/
 
 # libexec
 # /usr/libexec/
