@@ -1,11 +1,13 @@
 #!/bin/bash
 
 # def
-KAFKA_VERSION=3.9.1
+KAFKA_VERSION=3.9.2
 EPOCH=1
 DIST=""
 distro_info=$(cat /etc/os-release)
-if echo "${distro_info}" | grep -q 'el9'; then
+if echo "${distro_info}" | grep -q 'el10'; then
+    DIST="el10"
+elif echo "${distro_info}" | grep -q 'el9'; then
     DIST="el9"
 elif echo "${distro_info}" | grep -q 'el8'; then
     DIST="el8"

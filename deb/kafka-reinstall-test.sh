@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # def
-KAFKA_VERSION=3.9.1
+KAFKA_VERSION=3.9.2
 EPOCH=1
 PACKAGE_NAME=kafka_${KAFKA_VERSION}-${EPOCH}_amd64
 TOPDIR=~/debbuild

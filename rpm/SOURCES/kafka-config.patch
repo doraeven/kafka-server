@@ -1,6 +1,6 @@
-diff -ur kafka_2.13-3.9.1/config/connect-standalone.properties kafka_2.13-3.9.1-new/config/connect-standalone.properties
---- kafka_2.13-3.9.1/config/connect-standalone.properties	2025-05-12 12:02:52.000000000 +0800
-+++ kafka_2.13-3.9.1-new/config/connect-standalone.properties	2025-06-24 01:48:18.458421864 +0800
+diff -ur kafka_2.13-3.9.2/config/connect-standalone.properties kafka_2.13-3.9.2-new/config/connect-standalone.properties
+--- kafka_2.13-3.9.2/config/connect-standalone.properties	2026-02-07 11:00:08.000000000 +0800
++++ kafka_2.13-3.9.2-new/config/connect-standalone.properties	2026-07-05 23:49:08.445909588 +0800
 @@ -25,7 +25,7 @@
  key.converter.schemas.enable=true
  value.converter.schemas.enable=true
@@ -10,9 +10,9 @@ diff -ur kafka_2.13-3.9.1/config/connect-standalone.properties kafka_2.13-3.9.1-
  # Flush much faster than normal, which is useful for testing/debugging
  offset.flush.interval.ms=10000
  
-diff -ur kafka_2.13-3.9.1/config/kraft/broker.properties kafka_2.13-3.9.1-new/config/kraft/broker.properties
---- kafka_2.13-3.9.1/config/kraft/broker.properties	2025-05-12 12:02:52.000000000 +0800
-+++ kafka_2.13-3.9.1-new/config/kraft/broker.properties	2025-06-24 01:48:18.470421863 +0800
+diff -ur kafka_2.13-3.9.2/config/kraft/broker.properties kafka_2.13-3.9.2-new/config/kraft/broker.properties
+--- kafka_2.13-3.9.2/config/kraft/broker.properties	2026-02-07 11:00:08.000000000 +0800
++++ kafka_2.13-3.9.2-new/config/kraft/broker.properties	2026-07-05 23:49:08.498477293 +0800
 @@ -72,7 +72,7 @@
  ############################# Log Basics #############################
  
@@ -22,9 +22,9 @@ diff -ur kafka_2.13-3.9.1/config/kraft/broker.properties kafka_2.13-3.9.1-new/co
  
  # The default number of log partitions per topic. More partitions allow greater
  # parallelism for consumption, but this will also result in more files across
-diff -ur kafka_2.13-3.9.1/config/kraft/controller.properties kafka_2.13-3.9.1-new/config/kraft/controller.properties
---- kafka_2.13-3.9.1/config/kraft/controller.properties	2025-05-12 12:02:52.000000000 +0800
-+++ kafka_2.13-3.9.1-new/config/kraft/controller.properties	2025-06-24 01:48:18.466421863 +0800
+diff -ur kafka_2.13-3.9.2/config/kraft/controller.properties kafka_2.13-3.9.2-new/config/kraft/controller.properties
+--- kafka_2.13-3.9.2/config/kraft/controller.properties	2026-02-07 11:00:08.000000000 +0800
++++ kafka_2.13-3.9.2-new/config/kraft/controller.properties	2026-07-05 23:49:08.487671292 +0800
 @@ -72,7 +72,7 @@
  ############################# Log Basics #############################
  
@@ -34,9 +34,9 @@ diff -ur kafka_2.13-3.9.1/config/kraft/controller.properties kafka_2.13-3.9.1-ne
  
  # The default number of log partitions per topic. More partitions allow greater
  # parallelism for consumption, but this will also result in more files across
-diff -ur kafka_2.13-3.9.1/config/kraft/reconfig-server.properties kafka_2.13-3.9.1-new/config/kraft/reconfig-server.properties
---- kafka_2.13-3.9.1/config/kraft/reconfig-server.properties	2025-05-12 12:02:52.000000000 +0800
-+++ kafka_2.13-3.9.1-new/config/kraft/reconfig-server.properties	2025-06-24 01:48:18.470421863 +0800
+diff -ur kafka_2.13-3.9.2/config/kraft/reconfig-server.properties kafka_2.13-3.9.2-new/config/kraft/reconfig-server.properties
+--- kafka_2.13-3.9.2/config/kraft/reconfig-server.properties	2026-02-07 11:00:08.000000000 +0800
++++ kafka_2.13-3.9.2-new/config/kraft/reconfig-server.properties	2026-07-05 23:49:08.561235398 +0800
 @@ -75,7 +75,7 @@
  ############################# Log Basics #############################
  
@@ -46,9 +46,9 @@ diff -ur kafka_2.13-3.9.1/config/kraft/reconfig-server.properties kafka_2.13-3.9
  
  # The default number of log partitions per topic. More partitions allow greater
  # parallelism for consumption, but this will also result in more files across
-diff -ur kafka_2.13-3.9.1/config/kraft/server.properties kafka_2.13-3.9.1-new/config/kraft/server.properties
---- kafka_2.13-3.9.1/config/kraft/server.properties	2025-05-12 12:02:52.000000000 +0800
-+++ kafka_2.13-3.9.1-new/config/kraft/server.properties	2025-06-24 01:48:18.462421863 +0800
+diff -ur kafka_2.13-3.9.2/config/kraft/server.properties kafka_2.13-3.9.2-new/config/kraft/server.properties
+--- kafka_2.13-3.9.2/config/kraft/server.properties	2026-02-07 11:00:08.000000000 +0800
++++ kafka_2.13-3.9.2-new/config/kraft/server.properties	2026-07-05 23:49:08.463826390 +0800
 @@ -75,7 +75,7 @@
  ############################# Log Basics #############################
  
@@ -58,9 +58,9 @@ diff -ur kafka_2.13-3.9.1/config/kraft/server.properties kafka_2.13-3.9.1-new/co
  
  # The default number of log partitions per topic. More partitions allow greater
  # parallelism for consumption, but this will also result in more files across
-diff -ur kafka_2.13-3.9.1/config/server.properties kafka_2.13-3.9.1-new/config/server.properties
---- kafka_2.13-3.9.1/config/server.properties	2025-05-12 12:02:52.000000000 +0800
-+++ kafka_2.13-3.9.1-new/config/server.properties	2025-06-24 01:48:18.446421865 +0800
+diff -ur kafka_2.13-3.9.2/config/server.properties kafka_2.13-3.9.2-new/config/server.properties
+--- kafka_2.13-3.9.2/config/server.properties	2026-02-07 11:00:08.000000000 +0800
++++ kafka_2.13-3.9.2-new/config/server.properties	2026-07-05 23:49:08.357430081 +0800
 @@ -59,7 +59,7 @@
  ############################# Log Basics #############################
  
@@ -70,9 +70,9 @@ diff -ur kafka_2.13-3.9.1/config/server.properties kafka_2.13-3.9.1-new/config/s
  
  # The default number of log partitions per topic. More partitions allow greater
  # parallelism for consumption, but this will also result in more files across
-diff -ur kafka_2.13-3.9.1/config/zookeeper.properties kafka_2.13-3.9.1-new/config/zookeeper.properties
---- kafka_2.13-3.9.1/config/zookeeper.properties	2025-05-12 12:02:52.000000000 +0800
-+++ kafka_2.13-3.9.1-new/config/zookeeper.properties	2025-06-24 01:48:18.454421864 +0800
+diff -ur kafka_2.13-3.9.2/config/zookeeper.properties kafka_2.13-3.9.2-new/config/zookeeper.properties
+--- kafka_2.13-3.9.2/config/zookeeper.properties	2026-02-07 11:00:08.000000000 +0800
++++ kafka_2.13-3.9.2-new/config/zookeeper.properties	2026-07-05 23:49:08.431970387 +0800
 @@ -13,7 +13,7 @@
  # See the License for the specific language governing permissions and
  # limitations under the License.

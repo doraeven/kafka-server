@@ -114,7 +114,8 @@ if [ -z "$KAFKA_CLUSTER_ID" ]; then
 fi
 
 # Format Log Directories
-/usr/bin/kafka/kafka-storage.sh format --standalone -t "${KAFKA_CLUSTER_ID}" -c "${KAFKA_SERVER_CONFIG}" >&2
+# Fix error: You cannot specify controller.quorum.voters and format the node with --initial-controllers or --standalone. If you want to use dynamic quorum, please remove controller.quorum.voters and specify controller.quorum.bootstrap.servers instead.
+/usr/bin/kafka/kafka-storage.sh format -t "${KAFKA_CLUSTER_ID}" -c "${KAFKA_SERVER_CONFIG}" >&2
 ret=$?
 if [ $ret -ne 0 ]; then
     echo "Initialization of kafka-kraft log directories failed." >&2
