@@ -11,16 +11,17 @@ Build apache kafka server packages from official.
 - Released February 21, 2026
 - [Release Notes](https://downloads.apache.org/kafka/3.9.2/RELEASE_NOTES.html)
 
-### RPM for EL9 and EL8.
+### RPM for EL10 and EL9 and EL8.
 Support:
+- Enterprise Linux 10 (RHEL 10, Rocky Linux 10, AlmaLinux 10, CentOS 10 Stream)
 - Enterprise Linux 9 (RHEL 9, Rocky Linux 9, AlmaLinux 9, CentOS 9 Stream)
 - Enterprise Linux 8 (RHEL 8, Rocky Linux 8, AlmaLinux 8)
 
 ### DEB for Debian and Ubuntu.
 Support:
+- Debian 13 (Trixie)
 - Debian 12 (Bookworm)
 - Debian 11 (Bullseye)
-- Debian 10 (Buster)
 - Ubuntu 24.04 LTS (Noble Numbat)
 - Ubuntu 22.04 LTS (Jammy Jellyfish)
 - Ubuntu 20.04 LTS (Focal Fossa)
@@ -38,6 +39,10 @@ RHEL, Rocky Linux, AlmaLinux, CentOS
 Install jdk
 ```shell
 yum install java-25-openjdk
+```
+EL10
+```shell
+rpm -ivh kafka-3.9.2-1.el10.x86_64.rpm
 ```
 EL9
 ```shell
@@ -130,6 +135,10 @@ systemctl disable kafka-kraft.service
 #### uninstall for RPM
 RHEL, Rocky Linux, AlmaLinux, CentOS
 
+EL10
+```shell
+rpm -e kafka-3.9.2-1.el10.x86_64
+```
 EL9
 ```shell
 rpm -e kafka-3.9.2-1.el9.x86_64
