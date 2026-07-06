@@ -6,7 +6,7 @@
 %define _kafka_group %{name}
 
 Name:           kafka
-Version:        4.0.1
+Version:        4.0.2
 Release:        1%{?dist}
 Summary:        Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.
 
@@ -28,7 +28,7 @@ Patch1:         %{name}-config.patch
 Provides:       kafka
 Packager:       Dora Even <doraeven@163.com>
 
-BuildRequires:  java-21-openjdk
+BuildRequires:  java-25-openjdk
 Requires:       systemd
 # For now, the OpenJDK 11 packages in RHEL 7 and 8 don¡¯t provide java-headless, jre-headless, or any of the unversioned Java packages.
 # Requires:       java >= 1.8.0
@@ -186,6 +186,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Jul 06 2026 Dora Even <doraeven@163.com> - 4.0.2-1
+- Upgrade kafka package
+
 * Tue Nov 18 2025 Dora Even <doraeven@163.com> - 4.0.1-1
 - Upgrade kafka package
 
