@@ -2,18 +2,18 @@
 Build apache kafka server packages from official.
 
 ![Static Badge](https://img.shields.io/badge/build-passing-brightgreen)
-![Static Badge](https://img.shields.io/badge/tag-4.1.1-blue)
-![Static Badge](https://img.shields.io/badge/released-v20251125-blue)
+![Static Badge](https://img.shields.io/badge/tag-4.1.2-blue)
+![Static Badge](https://img.shields.io/badge/released-v20260707-blue)
 ![GitHub License](https://img.shields.io/github/license/doraeven/kafka-server)
 
 ## Introduction
-### 4.1.1
-- Released November 12, 2025
-- [Release Notes](https://downloads.apache.org/kafka/4.1.1/RELEASE_NOTES.html)
+### 4.1.2
+- Released March 17, 2026
+- [Release Notes](https://downloads.apache.org/kafka/4.1.2/RELEASE_NOTES.html)
 
-### Upgrading to 4.1.1
+### Upgrading to 4.1.2
 Note: Apache Kafka 4.0 only supports KRaft mode - ZooKeeper mode has been removed. 
-Link: [Upgrading Servers to 4.1.0 from any version 3.3.x through 3.9.x](https://kafka.apache.org/documentation.html#upgrade_4_1_0)
+Link: [Upgrading Servers to 4.1.2 from any version 3.3.x through 4.0.x](https://kafka.apache.org/41/getting-started/upgrade/)
 
 ### Future New Features
 Support: Cross compiling for ARM64 or AArch64.
@@ -45,29 +45,29 @@ RHEL, Rocky Linux, AlmaLinux, CentOS
 
 Install jdk
 ```shell
-yum install java-21-openjdk
+yum install java-25-openjdk
 ```
 EL10
 ```shell
-rpm -ivh kafka-4.1.1-1.el10.x86_64.rpm
+rpm -ivh kafka-4.1.2-1.el10.x86_64.rpm
 ```
 EL9
 ```shell
-rpm -ivh kafka-4.1.1-1.el9.x86_64.rpm
+rpm -ivh kafka-4.1.2-1.el9.x86_64.rpm
 ```
 EL8
 ```shell
-rpm -ivh kafka-4.1.1-1.el8.x86_64.rpm
+rpm -ivh kafka-4.1.2-1.el8.x86_64.rpm
 ```
 
 #### install with DEB
 Install jdk
 ```shell
-apt install openjdk-21-jdk
+apt install openjdk-25-jdk
 ```
 Debian or Ubuntu
 ```shell
-dpkg -i kafka_4.1.1-1_amd64.deb
+dpkg -i kafka_4.1.2-1_amd64.deb
 ```
 
 ### Run Kafka (KRaft mode only)
@@ -103,15 +103,15 @@ RHEL, Rocky Linux, AlmaLinux, CentOS
 
 EL10
 ```shell
-rpm -e kafka-4.1.1-1.el10.x86_64
+rpm -e kafka-4.1.2-1.el10.x86_64
 ```
 EL9
 ```shell
-rpm -e kafka-4.1.1-1.el9.x86_64
+rpm -e kafka-4.1.2-1.el9.x86_64
 ```
 EL8
 ```shell
-rpm -e kafka-4.1.1-1.el8.x86_64
+rpm -e kafka-4.1.2-1.el8.x86_64
 ```
 
 #### uninstall for DEB
