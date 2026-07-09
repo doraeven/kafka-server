@@ -3,7 +3,7 @@ Section: stream
 Priority: optional
 Maintainer: Dora Even <doraeven@163.com>
 Build-Depends: debhelper-compat (= 13),
-               openjdk-21-jdk
+               openjdk-25-jdk
 Standards-Version: 4.6.0
 Homepage: https://kafka.apache.org/
 Vcs-Browser: https://github.com/apache/kafka

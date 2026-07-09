@@ -15,7 +15,7 @@ set -x
 # sudo apt install equivs -y
 
 # prepare openjdk
-# sudo apt install openjdk-21-jdk -y
+# sudo apt install openjdk-25-jdk -y
 
 
 # prepare from source by dh_make
@@ -28,7 +28,7 @@ set -x
 
 # def
 NAME=kafka
-VERSION=4.1.1
+VERSION=4.2.0
 SCALA_VERSION=2.13
 EPOCH=1
 
@@ -172,6 +172,9 @@ rm -rf ${BUILDROOT}
 
 
 # changelog
+# * Thu Jul 09 2026 Dora Even <doraeven@163.com> - 4.2.0-1
+# - Upgrade kafka package
+
 # * Tue Nov 25 2025 Dora Even <doraeven@163.com> - 4.1.1-1
 # - Upgrade kafka package
 
