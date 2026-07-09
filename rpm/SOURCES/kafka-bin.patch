@@ -1,6 +1,6 @@
-diff -ur kafka_2.13-4.2.0/bin/connect-distributed.sh kafka_2.13-4.2.0-new/bin/connect-distributed.sh
---- kafka_2.13-4.2.0/bin/connect-distributed.sh	2026-02-10 17:27:33.000000000 +0800
-+++ kafka_2.13-4.2.0-new/bin/connect-distributed.sh	2026-07-09 18:16:55.002071133 +0800
+diff -ur kafka_2.13-4.2.1/bin/connect-distributed.sh kafka_2.13-4.2.1-new/bin/connect-distributed.sh
+--- kafka_2.13-4.2.1/bin/connect-distributed.sh	2026-05-13 19:52:45.000000000 +0800
++++ kafka_2.13-4.2.1-new/bin/connect-distributed.sh	2026-07-10 01:07:52.949037213 +0800
 @@ -23,7 +23,7 @@
  base_dir=$(dirname $0)
  
@@ -10,9 +10,9 @@ diff -ur kafka_2.13-4.2.0/bin/connect-distributed.sh kafka_2.13-4.2.0-new/bin/co
  fi
  
  if [ "x$KAFKA_HEAP_OPTS" = "x" ]; then
-diff -ur kafka_2.13-4.2.0/bin/connect-mirror-maker.sh kafka_2.13-4.2.0-new/bin/connect-mirror-maker.sh
---- kafka_2.13-4.2.0/bin/connect-mirror-maker.sh	2026-02-10 17:27:33.000000000 +0800
-+++ kafka_2.13-4.2.0-new/bin/connect-mirror-maker.sh	2026-07-09 18:16:55.011174032 +0800
+diff -ur kafka_2.13-4.2.1/bin/connect-mirror-maker.sh kafka_2.13-4.2.1-new/bin/connect-mirror-maker.sh
+--- kafka_2.13-4.2.1/bin/connect-mirror-maker.sh	2026-05-13 19:52:45.000000000 +0800
++++ kafka_2.13-4.2.1-new/bin/connect-mirror-maker.sh	2026-07-10 01:07:52.961967214 +0800
 @@ -23,7 +23,7 @@
  base_dir=$(dirname $0)
  
@@ -22,9 +22,9 @@ diff -ur kafka_2.13-4.2.0/bin/connect-mirror-maker.sh kafka_2.13-4.2.0-new/bin/c
  fi
  
  if [ "x$KAFKA_HEAP_OPTS" = "x" ]; then
-diff -ur kafka_2.13-4.2.0/bin/connect-standalone.sh kafka_2.13-4.2.0-new/bin/connect-standalone.sh
---- kafka_2.13-4.2.0/bin/connect-standalone.sh	2026-02-10 17:27:33.000000000 +0800
-+++ kafka_2.13-4.2.0-new/bin/connect-standalone.sh	2026-07-09 18:16:55.017988231 +0800
+diff -ur kafka_2.13-4.2.1/bin/connect-standalone.sh kafka_2.13-4.2.1-new/bin/connect-standalone.sh
+--- kafka_2.13-4.2.1/bin/connect-standalone.sh	2026-05-13 19:52:45.000000000 +0800
++++ kafka_2.13-4.2.1-new/bin/connect-standalone.sh	2026-07-10 01:07:52.976855214 +0800
 @@ -23,7 +23,7 @@
  base_dir=$(dirname $0)
  
@@ -34,9 +34,9 @@ diff -ur kafka_2.13-4.2.0/bin/connect-standalone.sh kafka_2.13-4.2.0-new/bin/con
  fi
  
  if [ "x$KAFKA_HEAP_OPTS" = "x" ]; then
-diff -ur kafka_2.13-4.2.0/bin/kafka-run-class.sh kafka_2.13-4.2.0-new/bin/kafka-run-class.sh
---- kafka_2.13-4.2.0/bin/kafka-run-class.sh	2026-02-10 17:27:33.000000000 +0800
-+++ kafka_2.13-4.2.0-new/bin/kafka-run-class.sh	2026-07-09 18:16:55.029988230 +0800
+diff -ur kafka_2.13-4.2.1/bin/kafka-run-class.sh kafka_2.13-4.2.1-new/bin/kafka-run-class.sh
+--- kafka_2.13-4.2.1/bin/kafka-run-class.sh	2026-05-13 19:52:45.000000000 +0800
++++ kafka_2.13-4.2.1-new/bin/kafka-run-class.sh	2026-07-10 01:07:52.993967214 +0800
 @@ -193,6 +193,12 @@
  done
  shopt -u nullglob
@@ -59,9 +59,9 @@ diff -ur kafka_2.13-4.2.0/bin/kafka-run-class.sh kafka_2.13-4.2.0-new/bin/kafka-
    # If Cygwin is detected, LOG4J_DIR is converted to Windows format.
    (( WINDOWS_OS_FORMAT )) && LOG4J_DIR=$(cygpath --path --mixed "${LOG4J_DIR}")
    KAFKA_LOG4J_OPTS="-Dlog4j2.configurationFile=${LOG4J_DIR}"
-diff -ur kafka_2.13-4.2.0/bin/kafka-server-start.sh kafka_2.13-4.2.0-new/bin/kafka-server-start.sh
---- kafka_2.13-4.2.0/bin/kafka-server-start.sh	2026-02-10 17:27:33.000000000 +0800
-+++ kafka_2.13-4.2.0-new/bin/kafka-server-start.sh	2026-07-09 18:16:55.034657030 +0800
+diff -ur kafka_2.13-4.2.1/bin/kafka-server-start.sh kafka_2.13-4.2.1-new/bin/kafka-server-start.sh
+--- kafka_2.13-4.2.1/bin/kafka-server-start.sh	2026-05-13 19:52:45.000000000 +0800
++++ kafka_2.13-4.2.1-new/bin/kafka-server-start.sh	2026-07-10 01:07:52.999644014 +0800
 @@ -22,7 +22,7 @@
  base_dir=$(dirname $0)
  
