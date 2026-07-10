@@ -6,7 +6,7 @@
 %define _kafka_group %{name}
 
 Name:           kafka
-Version:        4.2.0
+Version:        4.3.0
 Release:        1%{?dist}
 Summary:        Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.
 
@@ -186,6 +186,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Jul 10 2026 Dora Even <doraeven@163.com> - 4.3.0-1
+- Upgrade kafka package
+
 * Thu Jul 09 2026 Dora Even <doraeven@163.com> - 4.2.0-1
 - Upgrade kafka package
 

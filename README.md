@@ -2,18 +2,18 @@
 Build apache kafka server packages from official.
 
 ![Static Badge](https://img.shields.io/badge/build-passing-brightgreen)
-![Static Badge](https://img.shields.io/badge/tag-4.2.0-blue)
+![Static Badge](https://img.shields.io/badge/tag-4.3.0-blue)
 ![Static Badge](https://img.shields.io/badge/released-v20260709-blue)
 ![GitHub License](https://img.shields.io/github/license/doraeven/kafka-server)
 
 ## Introduction
-### 4.2.0
-- Released February 17, 2026
-- [Release Notes](https://downloads.apache.org/kafka/4.2.0/RELEASE_NOTES.html)
+### 4.3.0
+- Released May 22, 2026
+- [Release Notes](https://downloads.apache.org/kafka/4.3.0/RELEASE_NOTES.html)
 
-### Upgrading to 4.2.0
+### Upgrading to 4.3.0
 Note: Apache Kafka 4.0 only supports KRaft mode - ZooKeeper mode has been removed. 
-Link: [Upgrading Servers to 4.2.0 from any version 3.3.x through 4.1.x](https://kafka.apache.org/42/getting-started/upgrade/)
+Link: [Upgrading Servers to 4.3.0 from any version 3.3.x through 4.2.0](https://kafka.apache.org/43/getting-started/upgrade/)
 
 ### Future New Features
 Support: Cross compiling for ARM64 or AArch64.
@@ -49,15 +49,15 @@ yum install java-25-openjdk
 ```
 EL10
 ```shell
-rpm -ivh kafka-4.2.0-1.el10.x86_64.rpm
+rpm -ivh kafka-4.3.0-1.el10.x86_64.rpm
 ```
 EL9
 ```shell
-rpm -ivh kafka-4.2.0-1.el9.x86_64.rpm
+rpm -ivh kafka-4.3.0-1.el9.x86_64.rpm
 ```
 EL8
 ```shell
-rpm -ivh kafka-4.2.0-1.el8.x86_64.rpm
+rpm -ivh kafka-4.3.0-1.el8.x86_64.rpm
 ```
 
 #### install with DEB
@@ -67,7 +67,7 @@ apt install openjdk-25-jdk
 ```
 Debian or Ubuntu
 ```shell
-dpkg -i kafka_4.2.0-1_amd64.deb
+dpkg -i kafka_4.3.0-1_amd64.deb
 ```
 
 ### Run Kafka (KRaft mode only)
@@ -103,15 +103,15 @@ RHEL, Rocky Linux, AlmaLinux, CentOS
 
 EL10
 ```shell
-rpm -e kafka-4.2.0-1.el10.x86_64
+rpm -e kafka-4.3.0-1.el10.x86_64
 ```
 EL9
 ```shell
-rpm -e kafka-4.2.0-1.el9.x86_64
+rpm -e kafka-4.3.0-1.el9.x86_64
 ```
 EL8
 ```shell
-rpm -e kafka-4.2.0-1.el8.x86_64
+rpm -e kafka-4.3.0-1.el8.x86_64
 ```
 
 #### uninstall for DEB
