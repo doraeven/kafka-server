@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # def
-KAFKA_VERSION=4.3.0
+KAFKA_VERSION=4.3.1
 EPOCH=1
 DIST=""
 distro_info=$(cat /etc/os-release)
