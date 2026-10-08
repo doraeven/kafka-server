@@ -28,7 +28,7 @@ set -x
 
 # def
 NAME=kafka
-VERSION=4.2.1
+VERSION=4.2.2
 SCALA_VERSION=2.13
 EPOCH=1
 
@@ -172,6 +172,9 @@ rm -rf ${BUILDROOT}
 
 
 # changelog
+# * Thu Oct 08 2026 Dora Even <doraeven@163.com> - 4.2.2-1
+# - Upgrade kafka package
+
 # * Thu Jul 09 2026 Dora Even <doraeven@163.com> - 4.2.1-1
 # - Upgrade kafka package
 
