@@ -23,16 +23,14 @@ $ wsl --unregister Ubuntu
 
 
 # install distro version
+$ wsl --install -d Ubuntu-26.04
 $ wsl --install -d Ubuntu-24.04
 $ wsl --install -d Ubuntu-22.04
-$ wsl --install -d Ubuntu-20.04
-$ wsl --install -d Ubuntu-18.04
 
 # uninstall distro version
+$ wsl --unregister Ubuntu-26.04
 $ wsl --unregister Ubuntu-24.04
 $ wsl --unregister Ubuntu-22.04
-$ wsl --unregister Ubuntu-20.04
-$ wsl --unregister Ubuntu-18.04
 
 
 # update system
